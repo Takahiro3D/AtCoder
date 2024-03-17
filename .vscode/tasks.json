@@ -1,0 +1,142 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "C/C++: Clean up",
+      "type": "shell",
+      "command": "rm",
+      "args": [
+        "-f",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "C/C++: g++ build active file",
+      "type": "cppbuild",
+      "command": "g++",
+      "args": [
+        "-std=gnu++23",
+        "-g",
+        "-Wall",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "/usr/local/bin"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "dependsOn": [
+        "C/C++: Clean up"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "AtCoder: Prepare contest",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/prepare.bash",
+        "${input:contestName}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "AtCoder: Generate test case",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/generate.bash",
+        "${fileDirname}",
+        "${input:generatorCount}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "AtCoder: Check test case (C++)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/check.bash",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "dependsOn": [
+        "C/C++: g++ build active file"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "AtCoder: Check test case (Python)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/check.bash",
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "AtCoder: Submit code",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/submit.bash",
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "contestName",
+      "type": "promptString",
+      "description": "Enter contest name",
+      "default": "abc345"
+    },
+    {
+      "id": "generatorCount",
+      "type": "promptString",
+      "description": "Enter number of generation random test",
+      "default": "100"
+    }
+  ]
+}
