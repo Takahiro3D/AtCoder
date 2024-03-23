@@ -1,0 +1,75 @@
+- 文字列の順序が変わっても答えは同じ
+- 同じ文字列があるとき1回だけカウントされる
+
+aab
+---
+aab 
+aba
+baa
+
+aba (順序が変わっても同じ)
+---
+baa
+aab
+aba
+
+aabb 1+(2+2+0) (ダブリ2個で-1) 
+----
+aabb
+baab
+baba
+abab
+abba
+
+aaab 1+(1+1+1) (ダブリ2個で-2?)
+----
+aaab
+baaa
+abaa
+aaba
+
+aabc 1+(2+2+1) (ダブリ1個までは無効)
+----
+aabc
+baac
+caba
+abbc
+acba
+aacb
+
+abcd (3+2+1=6) 4C2=(4*3)/(2*1)=6
+----
+bacd
+cbad
+dbca
+acbd
+adcb
+abdc
+
+
+aabbc 
+-----
+aabbc
+
+
+
+abcde (4+3+2+1=10)
+-----
+bacde
+cbade
+dbcae
+ebcda
+acbde
+adcbe
+aecdb
+abdce
+abedc
+abced
+
+
+cebbbddca
+---------
+abbbccdde
+855533110 + 1
+32
+
