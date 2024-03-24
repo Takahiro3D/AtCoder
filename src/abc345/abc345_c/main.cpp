@@ -7,7 +7,7 @@
 using namespace std;
 
 int64_t solve(std::string S) {
-  int ans = 0;
+  int64_t ans = 0;
   bool isDuplicated = false;
   const int size = S.size();
   unordered_map<char, int> um;
@@ -15,7 +15,7 @@ int64_t solve(std::string S) {
     um[S[i]]++;
   }
 
-  int len = S.size();
+  int64_t len = S.size();
   for (auto [_, value] : um) {
     if ((value > 1) && (!isDuplicated)) {
       // increment only once
