@@ -10,7 +10,7 @@
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": [
-        "<${fileDirname}/test/${input:testInputFileArgument}"
+        "<${fileDirname}/${input:testInputFileArgument}"
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -33,7 +33,7 @@
       "id": "testInputFileArgument",
       "type": "promptString",
       "description": "Enter a test input file name:",
-      "default": "sample-1.in"
+      "default": "in_1.txt"
     }
   ]
 }
