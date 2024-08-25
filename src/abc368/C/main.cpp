@@ -30,33 +30,19 @@ int main() {
   }
 
   int64_t T = 0;
-  for (int i = 0; i < N; i++) {
-    auto h = H[i];
-
-    int64_t rem = T % 3;
-    // T: 1 2 3
-    // D: 1 2 5
-    if (rem == 1) {
-      h--;
-      T++;
-      rem++;
-      if (h <= 0) {
-        continue;
-      }
-    }
-    if (rem == 2) {
-      h -= 3;
-      T++;
-      if (h <= 0) {
-        continue;
-      }
-    }
-
+  for (auto h : H) {
     // T : 3, 6, 9...
     // D : 5, 10, 15 ...
-    auto x = div(h, 5);
-    T += x.quot * 3;
-    T += (x.rem <= 2) ? x.rem : 3;
+    // T : 2, 5, 7 ...
+    // D : 2, 7, 12 ...
+    int64_t quot = h / 5;
+    T += quot * 3;
+    h -= (5 * quot);
+
+    while (h > 0) {
+      T++;
+      h -= (T % 3 == 0) ? 3 : 1;
+    }
   }
 
   cout << T << endl;

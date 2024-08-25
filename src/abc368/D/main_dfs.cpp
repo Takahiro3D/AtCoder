@@ -27,52 +27,56 @@ int main() {
   int N, K;
   cin >> N >> K;
 
-  unordered_map<int, unordered_set<int>> G;
+  vector<vector<int>> G(N, vector<int>());
   for (int i = 0; i < N - 1; i++) {
     int A, B;
     cin >> A >> B;
     A--;
     B--;
-    G[A].emplace(B);
-    G[B].emplace(A);
+    G[A].emplace_back(B);
+    G[B].emplace_back(A);
   }
 
   vector<int> V(K);
-  unordered_set<int> ans;
+  vector<bool> selected(N);
   for (auto& v : V) {
     cin >> v;
     v--;
-    ans.emplace(v);
+    selected[v] = true;
   }
 
-  // No edge pattern
-  if (N == 1) {
-    cout << ans.size() << endl;
-    return 0;
-  }
+  vector<int> num(N);
+  stack<pair<int, int>> st;
+  vector<bool> visited(N);
+  st.push({V[0], -1});
 
-  queue<int> q;
-  for (auto [node, next] : G) {
-    if (next.size() == 1) {
-      q.emplace(node);
-    }
-  }
+  while (!st.empty()) {
+    auto [v, p] = st.top();
 
-  while (!q.empty()) {
-    auto node = q.front();
-    q.pop();
-    bool isRelated = (ans.find(node) != ans.end());
-    if (!isRelated) {
-      auto next = *G[node].begin();
-      G[next].erase(node);
-      if (G[next].size() == 1) {
-        q.emplace(next);
+    if (!visited[v]) {
+      visited[v] = true;
+      for (auto to : G[v]) {
+        if (to == p) continue;
+        st.push({to, v});
       }
-      G.erase(node);
+    } else {
+      // loop back process
+      if (selected[v]) {
+        num[v]++;
+      }
+      if (p != 1) {
+        num[p] += num[v];
+      }
+      st.pop();
     }
   }
 
-  cout << G.size() << endl;
+  int ans = 0;
+  for (auto n : num) {
+    if (n > 0) {
+      ans++;
+    }
+  }
 
   return 0;
 }

@@ -25,22 +25,22 @@ int main() {
   int N;
   cin >> N;
   vector<int> A(N);
+  int A_sum = 0;
+  int A_max = 0;
   for (auto& a : A) {
     cin >> a;
+    A_sum += a;
+    A_max = max(A_max, a);
   }
 
-  int ans = 0;
-  while (true) {
-    sort(A.begin(), A.end(), [](auto a, auto b) { return a > b; });
-    int positive_count = count_if(A.begin(), A.end(), [](int n) { return n > 0; });
-    if (positive_count <= 1) {
-      break;
-    }
-    A[0]--;
-    A[1]--;
-    ans++;
-  }
+  // 通常パターン
+  // 全体が2ずつ減少し、終了時に正の整数が1以下になる
+  int tmp = A_sum / 2;
 
-  cout << ans << endl;
+  // A_maxが偏っているパターン
+  // 終了時に正の整数が2以上になる
+  int tmp_a = A_sum - A_max;
+
+  cout << min(tmp, tmp_a) << endl;
   return 0;
 }

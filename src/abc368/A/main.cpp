@@ -29,16 +29,9 @@ int main() {
     cin >> a;
   }
 
-  vector<int> B;
-  for (int i = (N - K); i < N; i++) {
-    B.emplace_back(A[i]);
-  }
-  for (int i = 0; i < (N - K); i++) {
-    B.emplace_back(A[i]);
-  }
-
-  for (auto b : B) {
-    cout << b << " ";
+  rotate(A.begin(), A.begin() + N - K, A.end());
+  for (auto a : A) {
+    cout << a << " ";
   }
   cout << endl;
   return 0;
