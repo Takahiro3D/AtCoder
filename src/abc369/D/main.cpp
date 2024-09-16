@@ -31,33 +31,21 @@ int main() {
   }
 
   // {exp, kill num}
-  vector<vector<pair<int64_t, int>>> dp(N + 1, vector<pair<int64_t, int>>(2));
-  dp[0][0] = {0, 0};
-  dp[0][1] = {0, 0};
-  for (int i = 0; i < N; i++) {
-    // escape
-    dp[i + 1][0] = max(dp[i][0], dp[i][1]);
+  vector<vector<int64_t>> dp(N + 1, vector<int64_t>(2));
+  // odd
+  dp[0][0] = A[0];
+  // even
+  dp[0][1] = 0;
+  for (int i = 0; i < N - 1; i++) {
+    // odd
+    dp[i + 1][0] = max(dp[i][0], dp[i][1] + A[i + 1]);
 
-    // kill
-    auto exp0 = dp[i][0].first;
-    auto kill0 = dp[i][0].second + 1;
-    exp0 += (kill0 % 2 == 0) ? 2LL * A[i] : A[i];
-    auto exp1 = dp[i][1].first;
-    auto kill1 = dp[i][1].second + 1;
-    exp1 += (kill1 % 2 == 0) ? 2LL * A[i] : A[i];
-    if (exp0 > exp1) {
-      dp[i + 1][1] = {exp0, kill0};
-    } else if (exp1 > exp0) {
-      dp[i + 1][1] = {exp1, kill1};
-    } else if (kill0 > kill1) {
-      dp[i + 1][1] = {exp0, kill0};
-    } else {
-      dp[i + 1][1] = {exp1, kill1};
-    }
+    // even
+    dp[i + 1][1] = max(dp[i][0] + A[i + 1] * 2, dp[i][1]);
   }
 
-  auto ans = max(dp[N][0], dp[N][1]);
-  cout << ans.first << endl;
+  auto ans = max(dp[N - 1][0], dp[N - 1][1]);
+  cout << ans << endl;
 
   return 0;
 }
