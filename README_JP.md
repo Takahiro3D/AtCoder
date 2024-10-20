@@ -6,21 +6,19 @@ AtCoder用競技プログラミング環境
 ## 対応言語
 
 - C++
-- Python (基本動作のみ確認済み)
 
 ## 使い方
 
 作業は全てVSCode tasksで登録してあります。  
 VSCode taskは以下のパッケージを利用して動かしています。
-- [online-judge-tools](https://github.com/online-judge-tools/oj)
-- [online-judge-template-generator](https://github.com/online-judge-tools/template-generator)
+- [atcoder-tools](https://github.com/kyuridenamida/atcoder-tools)
 
 以下にAtCoderのプログラングコンテストで使用する流れを記載します。
 
 ### 1. コンテストの準備
 
-> [!WARNING]
-> ABCでは問題文の読み取りを禁止されているため、このスクリプトは使用しないでください。
+> [!INFO]
+> ABCでは問題文の読み取りを禁止されているため、入出力のコード生成はされません。
 
 タスク`AtCoder: Prepare contest` を実行します。
 ダイアログボックスにコンテスト名入力します。
@@ -39,7 +37,7 @@ AtCoderのユーザー名とパスワードを入力します。
 
 ### 3. テストケースの確認
 
-タスク `AtCoder: Check test case (C++)` か `AtCoder: Check test case (Python)` を問題を解いた言語に応じて実行します。
+タスク `AtCoder: Check test case` を問題を解いた言語に応じて実行します。
 
 ### 4. ソースコードの提出
 
@@ -50,15 +48,9 @@ AtCoderのユーザー名とパスワードを入力します。
 ### 自作テストケースの作り方
 
 テストケースを自作してテストすることができます。
-テスト入力と出力ファイルを問題の`test`ディレクトリ内に作成することで、テストケースの確認時に実行されます。
+テスト入力ファイル`in_*.txt`と出力ファイル`out_*.txt`を問題のディレクトリ内に作成することで、テストケースの確認時に実行されます。
 
-### ランダムテストの作り方
-
-`generator.py`を用いてランダム入力を生成することができます。
-問題文から成約を満たす入力を`generetor.py`で作成し、ファイルを開いた状態でタスク`AtCoder: Generate test`を実行します。
-生成されたテストはテストケースの確認時に実行されます。
-
-### デバッガーの起動方法 (C++のみ対応)
+### デバッガーの起動方法
 
 `F5`キーを押すか`Run and Debug`タブから`C/C++: build and debug`を実行します。
 ダイアログボックスにプログラムの入力に使用するテストケースの名前を問題の`test`ディレクトリ内から入力します。
