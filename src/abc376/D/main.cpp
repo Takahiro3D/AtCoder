@@ -36,34 +36,28 @@ int main() {
     G[a].emplace_back(b);
   }
 
-  // Dijkstra
+  // BFS
   vector<int> G_dist(N, INT32_MAX);
-  std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> q;
-  for (auto next : G[0]) {
-    q.emplace(next, 1);
+  queue<int> q;
+  // Initial emplace
+  for (const auto& next : G[0]) {
     G_dist[next] = 1;
+    q.emplace(next);
   }
   while (!q.empty()) {
-    auto s = q.top();
-    auto from = s.first;
-    auto dist = s.second;
+    auto v = q.front();
     q.pop();
 
-    if (G_dist[from] < dist) {
-      // Skip because the queue is not minimum dist
-      continue;
-    }
-
-    for (const auto& next : G[from]) {
+    for (const auto& next : G[v]) {
       // Insert if the dist is minimum
-      const auto d = G_dist[from] + 1;
+      const auto d = G_dist[v] + 1;
       if (d < G_dist[next]) {
         G_dist[next] = d;
-        q.emplace(next, d);
+        q.emplace(next);
       }
     }
   }
-  if (G_dist[0] == INT_MAX) {
+  if (G_dist[0] == INT32_MAX) {
     cout << -1 << endl;
     return 0;
   }
