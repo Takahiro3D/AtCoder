@@ -10,14 +10,7 @@ int main() {
   string S;
   cin >> S;
 
-  auto isInclude = [&](char c) {
-    for (auto s : S) {
-      if (s == c) {
-        return true;
-      }
-    }
-    return false;
-  };
+  auto isInclude = [&](char c) { return S.find(c) != string::npos; };
 
   auto includeA = isInclude('A');
   auto includeB = isInclude('B');
@@ -25,9 +18,9 @@ int main() {
 
   if (includeA && includeB && includeC) {
     cout << YES << endl;
-    return 0;
+  } else {
+    cout << NO << endl;
   }
-  cout << NO << endl;
 
   return 0;
 }

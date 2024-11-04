@@ -20,16 +20,21 @@ int main() {
     }
   }
 
-  int ans = 0;
-  for (int i = 0; i < 8; i++) {
-    for (int j = 0; j < 8; j++) {
-      if (!row[i] && !column[j]) {
-        ans++;
-      }
+  int r_ok = 0;
+  for (auto r : row) {
+    if (!r) {
+      r_ok++;
     }
   }
 
-  cout << ans << endl;
+  int c_ok = 0;
+  for (auto c : column) {
+    if (!c) {
+      c_ok++;
+    }
+  }
+
+  cout << r_ok * c_ok << endl;
 
   return 0;
 }
