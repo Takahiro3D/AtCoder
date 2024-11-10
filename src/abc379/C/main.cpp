@@ -7,58 +7,43 @@ int main() {
   int N, M;
   cin >> N >> M;
 
-  vector<int> X(M);
-  vector<int> A(M);
+  vector<pair<int, int>> P(M);
 
-  for (auto& x : X) {
-    cin >> x;
+  for (auto& p : P) {
+    cin >> p.first;
   }
-  for (auto& a : A) {
-    cin >> a;
+  for (auto& p : P) {
+    cin >> p.second;
   }
+  sort(P.begin(), P.end());
+  P.emplace_back(N + 1, 0);
 
-  int n = 1;
-  int64_t stones = 0;
-  int64_t ans = 0;
-  for (int i = 0; i < M; i++) {
-    auto x = X[i];
-    auto a = A[i];
-
-    if (n == x) {
-      // current stones exclude own stone
-      stones += a - 1;
-      if (i + 1 < M) {
-        auto x_next = X[i + 1];
-
-        int64_t dist = x_next - x;
-
-        if (stones >= dist - 1) {
-          // sum of AP
-          // n=dist, d=1, a1= current stones, an= remain stones
-          ans += dist * (stones + (stones - (dist - 1))) / 2;
-          stones -= dist - 1;
-          n = x_next;
-        } else {
-          ans = -1;
-          break;
-        }
-
-      } else {
-        // tail processing
-        int64_t dist = N - x;
-        if (stones == dist) {
-          ans += dist * (stones + 1) / 2;
-        } else {
-          ans = -1;
-          break;
-        }
-      }
-    } else {
-      ans = -1;
-      break;
+  int x_prev = 0;
+  int64_t moves = 0;
+  int64_t stones = 1;
+  for (auto [x, a] : P) {
+    // ckeck the previous section can be filfilled by stone;
+    auto dist = x - x_prev;
+    auto carry = stones - dist;
+    if (carry < 0) {
+      cout << -1 << endl;
+      return 0;
     }
+
+    // count unnecessary move num
+    moves += static_cast<int64_t>(x) * a;
+
+    x_prev = x;
+    stones = carry + a;
   }
 
+  // check remain stones are none
+  if (stones != 0) {
+    cout << -1 << endl;
+    return 0;
+  }
+
+  auto ans = static_cast<int64_t>(N + 1) * N / 2 - moves;
   cout << ans << endl;
 
   return 0;

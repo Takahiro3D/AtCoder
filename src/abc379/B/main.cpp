@@ -11,17 +11,12 @@ int main() {
   cin >> S;
 
   int ans = 0;
-  int count = 0;
-  for (auto s : S) {
-    if (s == 'O') {
-      count++;
-    } else {
-      count = 0;
-    }
-
-    if (count >= K) {
+  string expected = string(K, 'O');
+  string replace = string(K, 'X');
+  for (int i = 0; i < N - K + 1; i++) {
+    if (S.substr(i, K) == expected) {
       ans++;
-      count -= K;
+      S.replace(i, K, replace);
     }
   }
 
