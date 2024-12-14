@@ -18,38 +18,36 @@ int main() {
     }
   }
 
-  array<array<int, 1000>, 1000> visited;
-  for (auto& row : visited) {
+  array<array<int, 1000>, 1000> dist;
+  for (auto& row : dist) {
     row.fill(10000000);
   }
-  auto addHumidified = [&](auto& s, int h, int w) {
-    // BFS
-    queue<pair<int, int>> q;
-    q.emplace(h, w);
-    while (!q.empty()) {
-      auto coord = q.front();
-      q.pop();
-      s.emplace(coord.first, coord.second);
-      auto dist = (abs(coord.second - w) + abs(coord.first - h));
-      for (int k = 0; k < 4; k++) {
-        int i = coord.first + move_h[k];
-        int j = coord.second + move_w[k];
-        auto dist_new = (abs(j - w) + abs(i - h));
-        if ((i >= 0) && (i < H) && (j >= 0) && (j < W) && (dist_new > dist) && (dist_new <= D)) {
-          if ((dist_new < visited[i][j]) && (S[i][j] == '.')) {
-            visited[i][j] = dist_new;
-            q.emplace(i, j);
-          }
-        }
-      }
-    }
-  };
+  queue<pair<int, int>> q;
 
   set<pair<int, int>> s;
   for (int i = 0; i < H; i++) {
     for (int j = 0; j < W; j++) {
       if (S[i][j] == 'H') {
-        addHumidified(s, i, j);
+        dist[i][j] = 0;
+        q.emplace(i, j);
+        s.emplace(i, j);
+      }
+    }
+  }
+  // BFS
+  while (!q.empty()) {
+    auto coord = q.front();
+    q.pop();
+    for (int k = 0; k < 4; k++) {
+      int i = coord.first + move_h[k];
+      int j = coord.second + move_w[k];
+      auto dist_new = dist[coord.first][coord.second] + 1;
+      if ((i >= 0) && (i < H) && (j >= 0) && (j < W) && (dist_new <= D)) {
+        if ((dist_new < dist[i][j]) && (S[i][j] == '.')) {
+          dist[i][j] = dist_new;
+          q.emplace(i, j);
+          s.emplace(i, j);
+        }
       }
     }
   }
