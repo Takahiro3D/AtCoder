@@ -16,30 +16,22 @@ int main() {
     sum += a;
   }
 
-  int i = 0;
-  // initial is maximum multiple sum smaller than S
-  int64_t tmp = (S / sum) * sum;
-  while (tmp < S) {
-    tmp += A[i];
-    i = (i + 1) % N;
-  }
+  int64_t rem = S % sum;
+  int tmp = 0;
+  int j = 0;
   bool ans = false;
-  for (int j = 0; j < N; j++) {
-    // Decreace front
-    tmp -= A[j];
-    if (tmp == S) {
+  for (int i = 0; i < N; i++) {
+    while (tmp < rem) {
+      // Add back
+      tmp += A[j];
+      j = (j + 1) % N;
+    }
+    if (tmp == rem) {
       ans = true;
       break;
     }
-    while (tmp < S) {
-      // Add back
-      tmp += A[i];
-      i = (i + 1) % N;
-      if (tmp == S) {
-        ans = true;
-        break;
-      }
-    }
+    // Decreace front
+    tmp -= A[i];
   }
 
   auto out = ans ? YES : NO;

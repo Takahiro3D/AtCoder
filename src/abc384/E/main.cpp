@@ -32,21 +32,22 @@ int main() {
   }
 
   priority_queue<pair<int, int>, std::vector<pair<int, int>>, CustomCompare> q;
-  vector<vector<bool>> visited(H, vector<bool>(W, false));
+  vector<vector<bool>> emplaced(H, vector<bool>(W, false));
   auto tryEmplace = [&](int h, int w) {
     for (int i = 0; i < 4; i++) {
       auto x = h + c[i];
       auto xIsInRange = (x >= 0) && (x < H);
       auto y = w + r[i];
       auto yIsInRange = (y >= 0) && (y < W);
-      if (xIsInRange && yIsInRange && !visited[x][y]) {
+      if (xIsInRange && yIsInRange && !emplaced[x][y]) {
         q.emplace(x, y);
+        emplaced[x][y] = true;
       }
     }
   };
 
   int64_t sum = S[P][Q];
-  visited[P][Q] = true;
+  emplaced[P][Q] = true;
   tryEmplace(P, Q);
 
   while ((!q.empty())) {
@@ -55,7 +56,6 @@ int main() {
     auto s = S[coord.first][coord.second];
     if (s < ((sum + X - 1) / X)) {
       sum += s;
-      visited[coord.first][coord.second] = true;
       tryEmplace(coord.first, coord.second);
     } else {
       break;

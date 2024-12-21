@@ -10,7 +10,7 @@ int main() {
   }
 
   vector<pair<int, string>> V;
-  for (int i = 0; i <= 0x1F; i++) {
+  for (int i = 1; i <= 0x1F; i++) {
     int score = 0;
     string str;
     for (int j = 0; j < 5; j++) {
