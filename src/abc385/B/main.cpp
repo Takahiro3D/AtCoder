@@ -22,31 +22,25 @@ int main() {
   cin >> T;
 
   int ans = 0;
-  vector<vector<bool>> visited(H, vector<bool>(W));
   for (auto& t : T) {
     auto m = moveS[t];
     auto x = X + m.first;
     auto y = Y + m.second;
-    auto xIsInRange = (x >= 0) && (x < H);
-    auto yIsInRange = (y >= 0) && (y < W);
-    if (xIsInRange && yIsInRange) {
-      switch (S[x][y]) {
-        case '.': {
-          X = x;
-          Y = y;
-        } break;
+    switch (S[x][y]) {
+      case '.': {
+        X = x;
+        Y = y;
+      } break;
 
-        case '@': {
-          if (!visited[x][y]) {
-            visited[x][y] = true;
-            ans++;
-          }
-          X = x;
-          Y = y;
-        } break;
-        default:
-          break;
-      }
+      case '@': {
+        // visited
+        S[x][y] = '.';
+        ans++;
+        X = x;
+        Y = y;
+      } break;
+      default:
+        break;
     }
   }
 
