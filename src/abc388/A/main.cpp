@@ -6,9 +6,7 @@ using namespace std;
 int main() {
   string S;
   cin >> S;
-
-  auto ans = string(1, S[0]) + "UPC";
-  cout << ans << endl;
+  cout << S[0] << "UPC" << endl;
 
   return 0;
 }

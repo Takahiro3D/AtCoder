@@ -13,13 +13,13 @@ int main() {
     cin >> T[i] >> L[i];
   }
 
-  vector<int> W(N);
   for (int i = 1; i <= D; i++) {
+    int ans = 0;
     for (int j = 0; j < N; j++) {
-      W[j] = T[j] * (L[j] + i);
+      auto w = T[j] * (L[j] + i);
+      ans = max(ans, w);
     }
-    sort(W.begin(), W.end());
-    cout << W.back() << endl;
+    cout << ans << endl;
   }
 
   return 0;
