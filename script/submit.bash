@@ -4,4 +4,4 @@ SRC_PATH=$1
 PROBLEM_PATH=$(dirname $SRC_PATH)
 
 cd $PROBLEM_PATH
-atcoder-tools submit -u
+atcoder-tools submit -uf
