@@ -7,32 +7,25 @@ int main() {
   int Q;
   cin >> Q;
 
-  vector<int64_t> v;
-  v.emplace_back(0);
-
-  int left_num = 0;
+  deque<int64_t> dq;
+  dq.emplace_back(0);
   for (int q = 0; q < Q; q++) {
     int t;
     cin >> t;
     switch (t) {
       case 1: {
-        int l;
+        int64_t l;
         cin >> l;
-        if (v.size() <= 1) {
-          v.emplace_back(l);
-        } else {
-          v.emplace_back(v.back() + l);
-        }
+        dq.emplace_back(dq.back() + l);
       } break;
       case 2: {
-        left_num++;
+        dq.pop_front();
       } break;
       case 3: {
         int k;
         cin >> k;
         k--;
-        auto ans = (left_num == 0) ? v[k] : v[k + left_num] - v[left_num];
-        cout << ans << endl;
+        cout << dq[k] - dq.front() << endl;
       } break;
 
       default:
