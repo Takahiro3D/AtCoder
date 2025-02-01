@@ -11,5 +11,4 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
 # online-judge-tools: https://pypi.org/project/online-judge-tools
 RUN pip3 install --break-system-packages \
     online-judge-tools \
-    atcoder-tools \
-    markupsafe==2.0.1 
+    online-judge-template-generator
