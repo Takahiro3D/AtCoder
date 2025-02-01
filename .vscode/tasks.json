@@ -75,7 +75,7 @@
       "group": "test"
     },
     {
-      "label": "AtCoder: Check test case",
+      "label": "AtCoder: Check test case (C++)",
       "type": "shell",
       "command": "bash",
       "args": [
@@ -91,6 +91,22 @@
       "dependsOn": [
         "C/C++: g++ build active file"
       ],
+      "group": "test"
+    },
+    {
+      "label": "AtCoder: Check test case (Python)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/script/check.bash",
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
       "group": "test"
     },
     {
