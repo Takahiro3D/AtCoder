@@ -19,10 +19,6 @@ Below is a flowchart of how it is used in AtCoder programming contests.
 
 ### 1. Prepare contest
 
-> [!WARNING]
-> ABC is not allowed to read problem statement.  
-> Do not use this script in ABC.
-
 Run task `AtCoder: Prepare contest`.  
 Enter the contest name in the dialogue.
 
