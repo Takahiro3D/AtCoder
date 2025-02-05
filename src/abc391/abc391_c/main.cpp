@@ -19,9 +19,8 @@ int main() {
   REP(i, n) { a[i] = i; }
   std::vector<int> nest(n);
   REP(i, n) { nest[a[i]]++; }
-  std::vector<int> nest_sorted(n);
-  REP(i, n) { nest_sorted[i] = nest[i]; }
 
+  int ans = 0;
   REP(i, q) {
     int query;
     cin >> query;
@@ -33,21 +32,20 @@ int main() {
         P--;
         H--;
 
-        auto it_dec = lower_bound(nest_sorted.begin(), nest_sorted.end(), nest[a[P]]);
-        (*it_dec)--;
         nest[a[P]]--;
+        if (nest[a[P]] == 1) {
+          ans--;
+        }
 
         a[P] = H;
-        auto it_inc = upper_bound(nest_sorted.begin(), nest_sorted.end(), nest[a[P]]);
-        (*(it_inc - 1))++;
         nest[a[P]]++;
+        if (nest[a[P]] == 2) {
+          ans++;
+        }
       } break;
 
       default: {
-        // sort(nest_sorted.begin(), nest_sorted.end());
-        auto it = lower_bound(nest_sorted.begin(), nest_sorted.end(), 2);
-        auto count = distance(it, nest_sorted.end());
-        std::cout << count << std::endl;
+        std::cout << ans << std::endl;
       } break;
     }
   }
