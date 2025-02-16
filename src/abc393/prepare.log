@@ -1,0 +1,387 @@
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_a
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+sick_fine
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+2
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+fine_fine
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+4
+
+[SUCCESS] saved to: test/sample-2.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_b
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+AABCC
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+2
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+ARC
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+0
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+AABAAABBAEDCCCD
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+4
+
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_c
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+3_5
+1_2
+2_3
+3_2
+3_1
+1_1
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+2
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+1_0
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+0
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+6_10
+6_2
+4_1
+5_1
+6_6
+5_3
+5_1
+1_4
+6_4
+4_2
+5_6
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+3
+
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_d
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+7
+0101001
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+3
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+3
+100
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+0
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+10
+0101001001
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+7
+
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_e
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+5_2
+3_4_6_7_12
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+3
+4
+6
+1
+6
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+3_3
+6_10_15
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+1
+1
+1
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+10_3
+414003_854320_485570_52740_833292_625990_909680_885153_435420_221663
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+59
+590
+590
+879
+879
+590
+20
+879
+590
+59
+
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_f
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+5_3
+2_4_1_3_3
+2_5
+5_2
+5_3
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+2
+1
+2
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+10_8
+2_5_6_5_2_1_7_9_7_2
+7_8
+5_2
+2_3
+2_6
+7_3
+8_9
+9_6
+8_7
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+4
+1
+1
+2
+1
+5
+3
+4
+
+[SUCCESS] saved to: test/sample-2.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc393/tasks/abc393_g
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+3_3_1
+3_6_1
+2_4_2
+5_7_9
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+24.0000000000000000000
+3.0000000000000000000_4.0000000000000000000_1.0000000000000000000
+3.0000000000000000000_4.0000000000000000000_2.0000000000000000000
+5.0000000000000000000_7.0000000000000000000_9.0000000000000000000
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+5_3_1
+1_1_1_1_1
+1_3_3_3_1
+1_3_2_3_1
+1_3_3_3_1
+1_1_1_1_1
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+20.5714285714285714281
+1.0000000000000000000_1.0000000000000000000_1.0000000000000000000_1.0000000000000000000_1.0000000000000000000
+1.0000000000000000000_2.7142857142857142857_2.7142857142857142857_2.7142857142857142857_1.0000000000000000000
+1.0000000000000000000_2.7142857142857142857_2.7142857142857142857_2.7142857142857142857_1.0000000000000000000
+1.0000000000000000000_2.7142857142857142857_2.7142857142857142857_2.7142857142857142857_1.0000000000000000000
+1.0000000000000000000_1.0000000000000000000_1.0000000000000000000_1.0000000000000000000_1.0000000000000000000
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+2_393_1
+0_0
+0_0
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+0.0000000000000000000
+0.0000000000000000000_0.0000000000000000000
+0.0000000000000000000_0.0000000000000000000
+
+[SUCCESS] saved to: test/sample-3.out
+
+[INFO] sample 3
+[INFO] input: sample-4
+5_36_5
+4_8_7_5_4
+0_6_8_3_5
+3_7_1_4_5
+4_7_1_5_6
+2_0_2_4_6
+
+[SUCCESS] saved to: test/sample-4.in
+[INFO] output: sample-4
+71.4000000000000000014
+4.0000000000000000000_8.0000000000000000000_7.0000000000000000000_5.0000000000000000000_4.0000000000000000000
+2.2285714285714285714_6.0000000000000000000_7.0000000000000000000_4.0000000000000000000_5.0000000000000000000
+3.0000000000000000000_7.0000000000000000000_1.7428571428571428571_4.0000000000000000000_5.0000000000000000000
+4.0000000000000000000_7.0000000000000000000_1.7428571428571428571_5.0000000000000000000_6.0000000000000000000
+2.0000000000000000000_1.4857142857142857144_2.0000000000000000000_4.0000000000000000000_6.0000000000000000000
+
+[SUCCESS] saved to: test/sample-4.out
+
+[INFO] sample 4
+[INFO] input: sample-5
+5_160_7
+6_3_2_7_9
+0_1_5_5_7
+7_8_4_7_5
+4_0_8_5_6
+3_6_1_9_0
+
+[SUCCESS] saved to: test/sample-5.in
+[INFO] output: sample-5
+65.4285714285714285685
+6.0000000000000000000_3.0000000000000000000_3.0000000000000000000_7.0000000000000000000_9.0000000000000000000
+1.0000000000000000000_1.0000000000000000000_5.0000000000000000000_5.0000000000000000000_7.0000000000000000000
+7.0000000000000000000_7.0000000000000000000_5.0000000000000000000_5.0000000000000000000_5.0000000000000000000
+4.0000000000000000000_4.0000000000000000000_5.0000000000000000000_5.0000000000000000000_5.0238095238095238086
+3.0000000000000000000_5.0238095238095238086_5.0000000000000000000_5.0952380952380952371_0.0000000000000000000
+
+[SUCCESS] saved to: test/sample-5.out
+
+[INFO] sample 5
+[INFO] input: sample-6
+10_193926872645_2752096782
+5_0_8_0_0_2_6_5_4_5
+5_5_5_9_7_0_3_3_6_5
+0_0_0_2_7_2_8_0_5_9
+4_8_2_5_8_2_4_9_2_0
+8_7_3_2_8_4_7_9_8_4
+4_1_0_4_9_3_7_5_8_7
+1_6_2_6_5_3_5_4_7_9
+7_3_7_6_3_9_3_2_2_5
+8_9_3_6_3_0_8_6_4_0
+0_0_9_7_6_2_1_9_7_6
+
+[SUCCESS] saved to: test/sample-6.in
+[INFO] output: sample-6
+346.6045935084415210714
+5.0000000000000000000_5.0000000000000000000_5.0943878534377365339_0.0000000000000000000_0.0000000000000000000_2.0000000000000000000_5.0314626178125788449_5.0000000000000000000_5.0000000000000000000_5.0000000000000000000
+5.0000000000000000000_5.0000000000000000000_5.0000000000000000000_7.0000000000000000000_7.0000000000000000000_2.0000000000000000000_3.0000000000000000000_3.0000000000000000000_5.0000000000000000000_5.0000000000000000000
+0.0000000000000000000_0.0000000000000000000_0.0000000000000000000_2.0000000000000000000_7.0000000000000000000_2.0000000000000000000_4.0000000000000000000_3.0000000000000000000_5.0000000000000000000_5.1258504712503153793
+4.0000000000000000000_7.0000000000000000000_2.0000000000000000000_5.0000000000000000000_8.0000000000000000000_2.0000000000000000000_4.0000000000000000000_8.0314626178125788445_2.0000000000000000000_2.0000000000000000000
+7.0314626178125788445_7.0000000000000000000_3.0000000000000000000_3.0000000000000000000_8.0000000000000000000_4.0000000000000000000_7.0000000000000000000_8.0314626178125788445_8.0000000000000000000_4.0000000000000000000
+4.0000000000000000000_2.0000000000000000000_2.0000000000000000000_4.0000000000000000000_8.0000000000000000000_3.0000000000000000000_7.0000000000000000000_5.0000000000000000000_8.0000000000000000000_7.0000000000000000000
+4.0000000000000000000_6.0000000000000000000_2.0000000000000000000_6.0000000000000000000_5.0000000000000000000_3.0000000000000000000_5.0000000000000000000_4.0000000000000000000_7.0000000000000000000_7.0629252356251576894
+7.0000000000000000000_6.0000000000000000000_6.0000000000000000000_6.0000000000000000000_3.0000000000000000000_3.0000000000000000000_3.0000000000000000000_3.0000000000000000000_3.0000000000000000000_5.0000000000000000000
+8.0000000000000000000_8.0000000000000000000_6.0000000000000000000_6.0000000000000000000_3.0000000000000000000_2.0000000000000000000_6.0000000000000000000_6.0000000000000000000_4.0000000000000000000_4.0000000000000000000
+0.0000000000000000000_0.0000000000000000000_7.0629252356251576894_7.0000000000000000000_6.0000000000000000000_2.0000000000000000000_2.0000000000000000000_7.0629252356251576894_7.0000000000000000000_6.0000000000000000000
+
+[SUCCESS] saved to: test/sample-6.out
