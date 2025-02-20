@@ -13,21 +13,14 @@ int64_t solve(int64_t N, std::string S) {
       V.emplace_back(i);
     }
   }
-  int64_t avg = accumulate(ALL(V), 0LL) / V.size();
+  int mid = V.size() / 2;
+  auto mid_idx = V[mid];
 
-  auto calc = [&](auto avg) {
-    int64_t ret = 0;
-    auto it = lower_bound(ALL(V), avg);
-    auto dist = distance(V.begin(), it);
-    REP(i, V.size()) {
-      auto idx = *it - (dist - i);
-      ret += abs(idx - V[i]);
-    }
-    return ret;
-  };
-
-  auto ans = calc(avg);
-  ans = min(ans, calc(avg++));
+  int64_t ans = 0;
+  REP(i, V.size()) {
+    auto idx = mid_idx - (mid - i);
+    ans += abs(idx - V[i]);
+  }
 
   return ans;
 }
