@@ -12,10 +12,7 @@ int main() {
   std::cin.tie(nullptr);
   int Q;
   std::cin >> Q;
-  std::stack<int64_t> st;
-  for (int i = 0; i < 100; i++) {
-    st.emplace(0);
-  }
+  std::vector<int64_t> v(100, 0);
   REP(i, Q) {
     int q;
     std::cin >> q;
@@ -23,11 +20,11 @@ int main() {
       case 1: {
         int x;
         cin >> x;
-        st.emplace(x);
+        v.emplace_back(x);
       } break;
       case 2: {
-        auto value = st.top();
-        st.pop();
+        auto value = v.back();
+        v.pop_back();
         cout << value << "\n";
       } break;
       default:

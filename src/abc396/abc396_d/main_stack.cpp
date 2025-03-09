@@ -6,29 +6,14 @@
 #define ALL(x) ::std::begin(x), ::std::end(x)
 using namespace std;
 
-vector<bool> visited(10);
-vector<vector<pair<int64_t, int64_t>>> G(10);
-int64_t ans = INT64_MAX;
-
-void dfs(int64_t node, int64_t value, int64_t goal) {
-  if (node == goal) {
-    ans = min(ans, value);
-    return;
-  }
-
-  visited[node] = true;
-  for (auto next : G[node]) {
-    if (!visited[next.first]) {
-      auto xor_value = value ^ next.second;
-      dfs(next.first, xor_value, goal);
-    }
-  }
-  // back track
-  visited[node] = false;
-  return;
-}
+struct St {
+  int64_t node;
+  int64_t value;
+  bitset<10> visited;
+};
 
 int64_t solve(int64_t N, int M, std::vector<int64_t> &u, std::vector<int64_t> &v, const std::vector<int64_t> &w) {
+  vector<vector<pair<int64_t, int64_t>>> G(10);
   REP(i, M) {
     u[i]--;
     v[i]--;
@@ -37,9 +22,32 @@ int64_t solve(int64_t N, int M, std::vector<int64_t> &u, std::vector<int64_t> &v
   }
 
   // search all simple path with DFS
-  visited[0] = true;
+  stack<St> st;
+  int64_t ans = INT64_MAX;
+
   for (auto p : G[0]) {
-    dfs(p.first, p.second, N - 1);
+    bitset<10> visited;
+    visited[0] = true;
+    st.emplace(p.first, p.second, visited);
+  }
+
+  while (!st.empty()) {
+    auto n = st.top();
+    st.pop();
+    if (n.node == (N - 1)) {
+      // Reached to goal
+      ans = min(ans, n.value);
+      continue;
+    }
+
+    n.visited[n.node] = true;
+
+    for (auto p : G[n.node]) {
+      if (!n.visited[p.first]) {
+        auto xor_value = p.second ^ n.value;
+        st.emplace(p.first, xor_value, n.visited);
+      }
+    }
   }
   return ans;
 }
