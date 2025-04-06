@@ -6,20 +6,16 @@
 #define ALL(x) ::std::begin(x), ::std::end(x)
 using namespace std;
 
-int64_t pow_i(int64_t x, int64_t y) {
-  int64_t ans = 1;
-  REP(i, y) { ans *= x; }
-  return ans;
-}
-
 constexpr int64_t MOD = 998244353;
 std::string solve(int64_t N, int64_t M) {
   int64_t ans = 0;
+  int64_t cur = 1;
   for (int64_t i = 0; i <= M; i++) {
-    ans += pow_i(N, i);
-    if (ans > 1000000000) {
+    ans += cur;
+    if (ans > 1'000'000'000) {
       return "inf";
     }
+    cur *= N;
   }
   return to_string(ans);
 }

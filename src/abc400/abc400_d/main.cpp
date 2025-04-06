@@ -11,7 +11,7 @@ int move_w[] = {1, -1, 0, 0};
 
 int64_t solve(int H, int W, const std::vector<std::string> &S, int A, int B, int64_t C, int64_t D) {
   using Coord = pair<int, int>;
-  priority_queue<pair<int, Coord>, vector<pair<int, Coord>>, greater<pair<int, Coord>>> pq;
+  deque<pair<int, Coord>> q;
   vector<vector<int>> costs(H, vector<int>(W, INT32_MAX));
   vector<vector<bool>> visited(H, vector<bool>(W));
   A--;
@@ -19,16 +19,27 @@ int64_t solve(int H, int W, const std::vector<std::string> &S, int A, int B, int
   C--;
   D--;
 
-  pq.emplace(0, Coord(A, B));
-  while (!pq.empty()) {
-    auto [cost, coord] = pq.top();
-    pq.pop();
+  auto push = [&](int cost, Coord coord, int c) {
+    if (cost >= costs[coord.first][coord.second]) {
+      return;
+    }
+    if (c == 0) {
+      q.emplace_front(cost, coord);
+    } else {
+      cost++;
+      q.emplace_back(cost, coord);
+    }
+    costs[coord.first][coord.second] = cost;
+  };
+
+  push(0, Coord(A, B), 0);
+  while (!q.empty()) {
+    auto [cost, coord] = q.front();
+    q.pop_front();
 
     if (visited[coord.first][coord.second]) {
       continue;
     }
-
-    costs[coord.first][coord.second] = cost;
     visited[coord.first][coord.second] = true;
 
     REP(i, 4) {
@@ -37,16 +48,16 @@ int64_t solve(int H, int W, const std::vector<std::string> &S, int A, int B, int
       auto w_is_inrange = (move.second >= 0) && (move.second < W);
       if (h_is_inrange && w_is_inrange) {
         if (S[move.first][move.second] == '.') {
-          pq.emplace(cost, move);
+          push(cost, move, 0);
         } else {
           // move kick
-          pq.emplace(cost + 1, move);
+          push(cost, move, 1);
 
           Coord move2 = {move.first + move_h[i], move.second + move_w[i]};
           auto h_is_inrange = (move2.first >= 0) && (move2.first < H);
           auto w_is_inrange = (move2.second >= 0) && (move2.second < W);
           if (h_is_inrange && w_is_inrange) {
-            pq.emplace(cost + 1, move2);
+            push(cost, move2, 1);
           }
         }
       }
