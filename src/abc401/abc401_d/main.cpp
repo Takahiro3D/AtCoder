@@ -21,34 +21,26 @@ std::string solve(int64_t N, int64_t K, std::string S) {
     }
   }
 
-  unordered_map<int, vector<int>> um_consective_num;
-  int consective_num = 0;
-  int consective_index = 0;
+  unordered_map<int, vector<int>> um_consecutive_num;
   REP(i, N) {
     if (ans[i] == '?') {
-      if (consective_num == 0) {
-        consective_index = i;
+      auto l = i;
+      while (i < N && ans[i] == '?') {
+        i++;
       }
-      consective_num++;
-    } else {
-      if (consective_num > 0) {
-        um_consective_num[consective_num].emplace_back(consective_index);
-        consective_num = 0;
-      }
+      auto consecutive_num = i - l;
+      um_consecutive_num[consecutive_num].emplace_back(l);
     }
-  }
-  if (consective_num > 0) {
-    um_consective_num[consective_num].emplace_back(consective_index);
-    consective_num = 0;
   }
 
   int max_o = 0;
-  for (auto [key, v] : um_consective_num) {
+  for (auto [key, v] : um_consecutive_num) {
     max_o += (key + 1) / 2 * v.size();
   }
 
-  if (max_o + num_o == K) {
-    for (auto [key, v] : um_consective_num) {
+  auto remain_o = K - num_o;
+  if (remain_o == max_o) {
+    for (auto [key, v] : um_consecutive_num) {
       if (key % 2 == 0) {
         continue;
       }
@@ -60,8 +52,7 @@ std::string solve(int64_t N, int64_t K, std::string S) {
         }
       }
     }
-  }
-  if (num_o == K) {
+  } else if (remain_o == 0) {
     for (auto& s : ans) {
       if (s == '?') {
         s = '.';
