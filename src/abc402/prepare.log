@@ -1,0 +1,308 @@
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_a
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+AtCoderBeginnerContest
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+ACBC
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+PaymentRequired
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+PR
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+program
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+
+(only newline)
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_b
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+6
+1_3
+1_1
+1_15
+2
+1_3
+2
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+3
+1
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+7
+1_3
+1_1
+1_4
+1_1
+1_5
+1_9
+1_2
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+
+(only newline)
+[SUCCESS] saved to: test/sample-2.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_c
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+5_4
+2_1_2
+3_3_4_5
+3_1_2_5
+1_3
+1_3_2_5_4
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+0
+1
+2
+3
+4
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+9_8
+1_4
+5_6_9_7_4_3
+4_2_4_1_3
+1_1
+5_7_9_8_1_5
+2_9_8
+1_2
+1_1
+6_5_2_7_8_4_1_9_3
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+0
+0
+1
+1
+1
+2
+4
+6
+8
+
+[SUCCESS] saved to: test/sample-2.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_d
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+8_3
+1_5
+1_8
+2_4
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+2
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+5_10
+2_5
+1_5
+1_2
+2_4
+2_3
+1_3
+1_4
+3_5
+3_4
+4_5
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+40
+
+[SUCCESS] saved to: test/sample-2.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_e
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+3_2
+100_1_50
+200_1_20
+1000_1_1
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+95
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+2_7
+100_3_50
+100_2_50
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+125
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+5_32
+500_9_57
+300_4_8
+300_3_32
+300_7_99
+100_8_69
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+953.976967020096
+
+[SUCCESS] saved to: test/sample-3.out
+
+[INFO] sample 3
+[INFO] input: sample-4
+7_78
+100_1_100
+200_2_90
+300_3_80
+400_4_60
+450_5_50
+525_6_30
+650_7_1
+
+[SUCCESS] saved to: test/sample-4.in
+[INFO] output: sample-4
+1976.2441416041121021
+
+[SUCCESS] saved to: test/sample-4.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_f
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+2_7
+1_2
+3_1
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+5
+
+[SUCCESS] saved to: test/sample-1.out
+
+[INFO] sample 1
+[INFO] input: sample-2
+3_100000
+1_2_3
+3_5_8
+7_1_2
+
+[SUCCESS] saved to: test/sample-2.in
+[INFO] output: sample-2
+13712
+
+[SUCCESS] saved to: test/sample-2.out
+
+[INFO] sample 2
+[INFO] input: sample-3
+5_402
+8_1_3_8_9
+8_2_4_1_8
+4_1_8_5_9
+6_2_1_6_7
+6_6_7_7_6
+
+[SUCCESS] saved to: test/sample-3.in
+[INFO] output: sample-3
+384
+
+[SUCCESS] saved to: test/sample-3.out
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/abc402/tasks/abc402_g
+[NETWORK] 200 OK
+[INFO] save cookie to: /home/vscode/.local/share/online-judge-tools/cookie.jar
+[INFO] clear the downloading history for this directory: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+[INFO] append the downloading history: /home/vscode/.cache/online-judge-tools/download-history.jsonl
+
+[INFO] sample 0
+[INFO] input: sample-1
+5
+4_7_2_1_4
+12_15_2_8_7
+777_1_0_0_0
+100_101_0_100_100
+402_402_4_19_256
+
+[SUCCESS] saved to: test/sample-1.in
+[INFO] output: sample-1
+27
+866
+0
+1000000
+13728568
+
+[SUCCESS] saved to: test/sample-1.out
