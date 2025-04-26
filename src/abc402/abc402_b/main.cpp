@@ -10,8 +10,6 @@ using namespace std;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  // failed to analyze input format
-  // TODO: edit here
   int Q;
   std::cin >> Q;
   queue<int> q;

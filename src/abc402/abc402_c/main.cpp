@@ -6,19 +6,21 @@
 #define ALL(x) ::std::begin(x), ::std::end(x)
 using namespace std;
 
-auto solve(int N, int M, std::vector<int64_t> &K, const std::vector<std::vector<int64_t>> &A,
+auto solve(int N, int M, const std::vector<int64_t> &K, const std::vector<std::vector<int64_t>> &A,
            const std::vector<int64_t> &B) {
-  vector<vector<int>> F(N);
+  vector<vector<int>> menuList(N);
+  vector<int> cnt(N);
   REP(i, M) {
-    REP(j, K[i]) { F[A[i][j] - 1].emplace_back(i); }
+    cnt[i] = K[i];
+    REP(j, K[i]) { menuList[A[i][j] - 1].emplace_back(i); }
   }
 
   vector<int> ans(N);
   int tmp = 0;
   REP(i, N) {
-    for (auto m : F[B[i] - 1]) {
-      K[m]--;
-      if (K[m] == 0) {
+    for (auto m : menuList[B[i] - 1]) {
+      cnt[m]--;
+      if (cnt[m] == 0) {
         tmp++;
       }
     }

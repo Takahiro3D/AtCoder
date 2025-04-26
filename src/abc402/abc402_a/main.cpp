@@ -8,9 +8,9 @@ using namespace std;
 
 auto solve(std::string S) {
   string ans;
-  for (auto s : S) {
-    if (s >= 'A' && s <= 'Z') {
-      ans.push_back(s);
+  for (auto c : S) {
+    if (isupper(c)) {
+      ans.push_back(c);
     }
   }
   return ans;
@@ -23,8 +23,6 @@ int main() {
   std::string S;
   std::cin >> S;
   auto ans = solve(S);
-  // failed to analyze output format
-  // TODO: edit here
   std::cout << ans << '\n';
   return 0;
 }
