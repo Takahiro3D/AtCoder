@@ -1,0 +1,34 @@
+
+A: apple
+B: orange
+C: banana
+D: grapes
+
+sample1
+
+Rule 1, 2
+- A B C D
+- A B D C 
+- B A C D
+- B A D C
+
+ABとCDを入れ替えた組み合わせ
+
+重複を考慮した順列で計算可能
+(A+B)!/(A!*B!) * (C+D)!/(C!:D!)
+
+Rule 3
+- A C B D
+
+Rule 1, Rule2を除外すると以下のルールが付与される
+- 林檎はすべて、オレンジよりも左側
+
+CBを入れ替えた組み合わせ 
+(B+C)!/(B!*C!) - 1 (<-Rule1 Rule2の組み合わせを除外)
+
+
+
+Sample2
+
+3* 12P4/4! = 3*11*5*9 = 1485
+6P2 = 
