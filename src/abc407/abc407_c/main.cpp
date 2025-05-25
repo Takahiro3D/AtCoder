@@ -8,20 +8,15 @@ using namespace std;
 
 int64_t solve(std::string S) {
   int64_t ans = 0;
-  char tmp = 'n';
-  for (auto c : S) {
-    ans++;
-    if (tmp == 'n') {
-      tmp = c;
-      ans += tmp - '0';
-      continue;
-    }
+  int64_t a = 0;
 
-    if ((tmp != 'n') && (c > tmp)) {
-      ans += 10;
-    }
-    tmp = c;
+  for (auto it = S.rbegin(); it != S.rend(); ++it) {
+    auto num = *it - '0';
+    ans++;
+    ans += (10 + num - a) % 10;
+    a = num;
   }
+
   return ans;
 }
 
