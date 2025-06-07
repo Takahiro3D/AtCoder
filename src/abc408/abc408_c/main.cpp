@@ -13,32 +13,17 @@ int main() {
 
   int64_t N, M;
   std::cin >> N >> M;
-  vector<pair<int, int>> A(M);
+  vector<int> A(N + 1);
   REP(i, M) {
     int L, R;
     cin >> L >> R;
     L--;
-    R--;
-    A[i] = {L, R};
+    A[L]++;
+    A[R]--;
   }
 
-  sort(ALL(A));
-
-  int ans = INT_MAX;
-  priority_queue<int, std::vector<int>, std::greater<int>> pq;
-  int tmp = 0;
-  REP(i, N) {
-    while (tmp < M && i >= A[tmp].first) {
-      auto end = A[tmp].second;
-      pq.emplace(end);
-      tmp++;
-    }
-
-    while (!pq.empty() && i > pq.top()) {
-      pq.pop();
-    }
-    ans = min(ans, static_cast<int>(pq.size()));
-  }
+  REP(i, N) { A[i + 1] += A[i]; }
+  auto ans = *min_element(A.begin(), A.begin() + N);
 
   cout << ans << endl;
 
