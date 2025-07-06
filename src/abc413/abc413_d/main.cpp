@@ -15,8 +15,24 @@ auto solve(void) {
   }
   sort(ALL(A), [](int a, int b) { return std::abs(a) < std::abs(b); });
   for (int i = 1; i < N - 1; i++) {
-    auto est = static_cast<int64_t>(A[i]) * A[1] / A[0];
-    if (est != A[i + 1]) {
+    auto est = div(static_cast<int64_t>(A[i]) * A[1], static_cast<int64_t>(A[0]));
+    if ((est.rem != 0) || (est.quot != A[i + 1])) {
+      // 公比が-1 [1, -1, 1 ...]のケース判定
+      if(abs(A[0]) == abs(A.back())){
+        int positive=0;
+        int negative=0;
+        for(auto a:A){
+          if(a>0){
+            positive++;
+          }else{
+            negative++;
+          }
+        }
+        if(abs(positive-negative)<=1){
+          cout<< "Yes" << endl;
+          return;
+        }
+      }
       cout << "No" << endl;
       return;
     }
