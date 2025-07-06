@@ -18,7 +18,7 @@
     },
     {
       "label": "C/C++: g++ build active file",
-      "type": "cppbuild",
+      "type": "process",
       "command": "g++",
       "args": [
         "-std=gnu++23",
@@ -31,9 +31,7 @@
       "options": {
         "cwd": "/usr/local/bin"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "dependsOn": [
         "C/C++: Clean up"
       ],
