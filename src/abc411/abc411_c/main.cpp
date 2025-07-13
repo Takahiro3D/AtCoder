@@ -16,39 +16,24 @@ int main() {
 
   int64_t N, Q;
   cin >> N >> Q;
-  vector<bool> v(N);
+  // Add 2 extra elements to handle edge cases
+  vector<bool> v(N + 2);
   int64_t cnt = 0;
   REP(i, Q) {
     int64_t A;
     cin >> A;
-    A--;
-    v[A] = !v[A];
 
-    auto l_valid = (A - 1 >= 0);
-    auto r_valid = (A + 1 < N);
-    // x ? x
-    auto a1 = l_valid && !v[A - 1] && r_valid && !v[A + 1];
-    // - ? x
-    auto a2 = !l_valid && r_valid && !v[A + 1];
-    // x ? -
-    auto a3 = l_valid && !v[A - 1] && !r_valid;
-    // o ? o
-    auto a4 = l_valid && v[A - 1] && r_valid && v[A + 1];
-    // - ? -
-    auto a5 = !l_valid && !r_valid;
-    if (v[A]) {
-      if (a1 || a2 || a3 || a5) {
-        cnt++;
-      } else if (a4) {
-        cnt--;
-      }
-    } else {
-      if (a4) {
-        cnt++;
-      } else if (a1 || a2 || a3 || a5) {
-        cnt--;
-      }
-    }
+    // Check the neighbor values
+    auto isRaising = [&](int64_t i) { return (v[i] == 0) && (v[i + 1] == 1); };
+    int64_t tmp = 0;
+    if (isRaising(A - 1)) tmp--;
+    if (isRaising(A)) tmp--;
+    // Toggle the state of the A-th element
+    v[A] = !v[A];
+    if (isRaising(A - 1)) tmp++;
+    if (isRaising(A)) tmp++;
+
+    cnt += tmp;
     cout << cnt << "\n";
   }
 
