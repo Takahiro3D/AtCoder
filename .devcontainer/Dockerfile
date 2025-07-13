@@ -12,3 +12,5 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
 RUN pip3 install --break-system-packages \
     online-judge-tools \
     online-judge-template-generator
+
+RUN git clone https://github.com/atcoder/ac-library.git /usr/local/include/ac-library
