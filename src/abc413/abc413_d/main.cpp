@@ -11,17 +11,28 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
 
-  int64_t N, L, R;
-  cin >> N >> L >> R;
-  int ans = 0;
-  REP(i, N) {
-    int64_t X, Y;
-    cin >> X >> Y;
-    if ((X <= L) && (Y >= R)) {
-      ans++;
-    }
+  int64_t N, M;
+  cin >> N >> M;
+
+  vector<int64_t> X(N);
+  for (auto& x : X) {
+    cin >> x;
+  }
+  sort(ALL(X));
+
+  vector<int64_t> x_dist(N - 1);
+  for (int i = 0; i < N - 1; ++i) {
+    x_dist[i] = X[i + 1] - X[i];
+  }
+  sort(ALL(x_dist));
+
+  int64_t ans = 0;
+  int64_t len = x_dist.size() + 1 - M;
+  for (int i = 0; i < len; ++i) {
+    ans += x_dist[i];
   }
 
-  std::cout << ans << '\n';
+  cout << ans << "\n";
+
   return 0;
 }
