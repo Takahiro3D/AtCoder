@@ -13,11 +13,11 @@ void solve(void) {
   cin >> S;
 
   bitset<18> bs_state;
-  queue<bitset<18>> bs_stack;
-  unordered_set<bitset<18>> bs_queued;
+  stack<bitset<18>> bs_stack;
+  vector<bool> bs_queued(1 << N);
   bs_stack.emplace("0");
   while (!bs_stack.empty()) {
-    auto bs_state = bs_stack.front();
+    auto bs_state = bs_stack.top();
     bs_stack.pop();
     REP(i, N) {
       // Alread included
@@ -26,16 +26,17 @@ void solve(void) {
       }
       auto tmp = bs_state;
       tmp.set(i);
-      auto state = tmp.to_ulong() - 1;
-      if (bs_queued.contains(state)) {
+      auto state = tmp.to_ulong();
+      if (bs_queued[state]) {
         continue;
       }
-      auto isDengerous = S[state] == '1';
+      auto isDengerous = S[state - 1] == '1';
       if (!isDengerous) {
-        if (tmp.count() == N) {
+        if (state == (1 << N) - 1) {
           cout << "Yes" << '\n';
           return;
         }
+        bs_queued[state] = true;
         bs_stack.push(tmp);
       }
     }

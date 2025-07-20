@@ -14,27 +14,25 @@ int main() {
   int64_t N, M;
   cin >> N >> M;
 
-  map<int64_t, int64_t> X;
+  vector<pair<int64_t, int64_t>> X;
   REP(i, M) {
     int64_t A, B;
     cin >> A >> B;
-    if (X.contains(A)) {
-      auto diff = A - B;
-      if (diff > (A - X[A])) {
-        X[A] = B;
-      }
-    } else {
-      X[A] = B;
-    }
+    X.emplace_back(A - B, A);
   }
+  sort(ALL(X));
 
   int64_t ans = 0;
-  for (auto x : X) {
-    N += x;
-    if (N < 0) {
-      break;
+  for (auto [cost, a] : X) {
+    if (N < a) {
+      continue;
     }
-    ans++;
+    // Bin N shall remain at least a
+    auto free = N - a;
+    // Other bin can be used to pay for the cost
+    auto x = free / cost + 1;
+    ans += x;
+    N -= x * cost;
   }
 
   cout << ans << "\n";
