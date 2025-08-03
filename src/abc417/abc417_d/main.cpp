@@ -6,51 +6,6 @@
 #define ALL(x) ::std::begin(x), ::std::end(x)
 using namespace std;
 
-void solve(void) {
-  int N, M;
-  cin >> N >> M;
-  vector<int> A(N);
-  for (auto& a : A) {
-    cin >> a;
-  }
-  sort(ALL(A));
-  vector<int> B(N);
-  for (auto& b : B) {
-    cin >> b;
-  }
-  sort(ALL(B));
-  reverse(ALL(B));
-
-  int ans = 0;
-  int i = 0;
-  vector<bool> used(N, false);
-  bool loop = false;
-  for (int j = 0; j < N; ++j) {
-    while (!loop) {
-      auto mod = (A[i] + B[j]) >= M;
-      if (mod) {
-        break;
-      }
-      i++;
-      if (i >= N) {
-        loop = true;
-        i = 0;
-        break;
-      }
-    }
-
-    while (used[i]) {
-      i++;
-    }
-    auto mod = (A[i] + B[j]) % M;
-    ans += mod;
-    used[i] = true;
-    i++;
-  }
-
-  cout << ans << "\n";
-}
-
 struct Present {
   int P;
   int A;
@@ -66,34 +21,43 @@ int main() {
   cin >> N;
   vector<Present> presents(N);
   REP(i, N) { cin >> presents[i].P >> presents[i].A >> presents[i].B; }
+  vector<int> B_sum(N + 1);
+  REP(i, N) { B_sum[i + 1] = B_sum[i] + presents[i].B; }
 
-  vector<unordered_map<int, int>> cache(N);
+  int SIZE = 1001;
+  vector<vector<int>> table(N + 1, vector<int>(SIZE));
+  REP(i, SIZE) { table[N][i] = i; }
+  REP(i, N) {
+    auto idx = N - i - 1;
+    REP(j, SIZE) {
+      int next_j;
+      auto [P, A, B] = presents[idx];
+      if (P >= j) {
+        next_j = j + A;
+      } else {
+        next_j = max(0, j - B);
+      }
+      table[idx][j] = table[idx + 1][next_j];
+    }
+  }
+
   int64_t Q;
   cin >> Q;
   REP(q, Q) {
     int X;
     cin >> X;
-    vector<int> tmp(N);
-    bool found = false;
-    REP(i, N) {
-      if (presents[i].P >= X) {
-        X += presents[i].A;
-      } else {
-        X = max(X - presents[i].B, 0);
+
+    int idx = 0;
+    if (X >= SIZE) {
+      auto it = upper_bound(ALL(B_sum), X - SIZE);
+      if (it == B_sum.end()) {
+        cout << X - B_sum[N] << '\n';
+        continue;
       }
-      if (cache[i].contains(X)) {
-        found = true;
-        auto ans = cache[i][X];
-        cout << ans << '\n';
-        REP(j, i) { cache[j][tmp[j]] = ans; }
-        break;
-      }
-      tmp[i] = X;
+      idx = it - B_sum.begin();
+      X -= B_sum[idx];
     }
-    if (!found) {
-      cout << X << '\n';
-      REP(i, N) { cache[i][tmp[i]] = X; }
-    }
+    cout << table[idx][X] << '\n';
   }
   return 0;
 }

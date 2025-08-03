@@ -18,25 +18,26 @@ int main() {
   for (auto &a : A) {
     cin >> a;
   }
-  vector<int> dA(N);
 
-  REP(i, N) { dA[i] = A[i] - i; }
+  // j - Aj = i + Ai
+  vector<int64_t> I(N);
+  REP(i, N) {
+    auto idx = i + A[i];
+    if (idx < N) {
+      I[idx]++;
+    }
+  }
 
-  unordered_map<int64_t, int64_t> diff_cnt;
-  for (int i = 1; i < N; ++i) {
-    auto diff = (A[0] + A[i]) - i;
-    diff_cnt[diff]++;
+  vector<int64_t> J(N);
+  REP(j, N) {
+    auto idx = j - A[j];
+    if (idx >= 0) {
+      J[idx]++;
+    }
   }
 
   int64_t ans = 0;
-  REP(i, N) {
-    auto offset = A[0] - A[i] - i;
-    ans += diff_cnt[offset];
-    if (i != 0) {
-      auto diff = (A[0] + A[i]) - i;
-      diff_cnt[diff]--;
-    }
-  }
+  REP(i, N) { ans += I[i] * J[i]; }
 
   std::cout << ans << '\n';
   return 0;
