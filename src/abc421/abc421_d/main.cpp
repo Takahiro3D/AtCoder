@@ -10,7 +10,7 @@
 using namespace std;
 using namespace atcoder;
 
-unordered_map<char, pair<int, int>> dir = {
+unordered_map<char, pair<int64_t, int64_t>> dir = {
     {'L', {0, -1}},
     {'R', {0, 1}},
     {'U', {-1, 0}},
@@ -52,31 +52,42 @@ int main() {
   int64_t ans = 0;
   while (i < M || j < L) {
     auto minLen = min(t[i].second, a[j].second);
-    auto isEven = (minLen % 2 == 0);
 
-    auto Ct_prev = Ct;
-    auto Ca_prev = Ca;
-    auto Rt_prev = Rt;
-    auto Ra_prev = Ra;
+    auto wasSameRow = Rt == Ra;
+    auto wasSameCol = Ct == Ca;
+
+    auto [Tdr, Tdc] = dir[t[i].first];
+    auto [Adr, Adc] = dir[a[j].first];
+
+    auto isSameMove = (t[i].first == a[j].first);
+    auto isMoveCol = (t[i].first == 'L' && a[j].first == 'R') || (t[i].first == 'R' && a[j].first == 'L');
+    auto isMoveRow = (t[i].first == 'U' && a[j].first == 'D') || (t[i].first == 'D' && a[j].first == 'U');
+
+    if (isSameMove) {
+      if (wasSameRow && wasSameCol) {
+        // same movement
+        ans += minLen;
+      }
+    } else if (isMoveRow) {
+      auto x = div(Ra - Rt, Tdr - Adr);
+      if (0 < x.quot && x.quot <= minLen && x.rem == 0 && wasSameCol) {
+        ans++;
+      }
+    } else if (isMoveCol) {
+      auto y = div(Ca - Ct, Tdc - Adc);
+      if (0 < y.quot && y.quot <= minLen && y.rem == 0 && wasSameRow) {
+        ans++;
+      }
+    } else {
+      // cross situation
+      auto x = div(Ra - Rt, Tdr - Adr);
+      auto y = div(Ca - Ct, Tdc - Adc);
+      if (x.quot == y.quot && 0 < x.quot && x.quot <= minLen && x.rem == 0 && y.rem == 0) {
+        ans++;
+      }
+    }
     move(Rt, Ct, t[i].first, minLen);
     move(Ra, Ca, a[j].first, minLen);
-
-    auto wasSameRow = Rt_prev == Ra_prev;
-    auto wasSameCol = Ct_prev == Ca_prev;
-    auto isSameMove = (t[i].first == a[j].first) && wasSameRow && wasSameCol;
-    auto isRowCrossed = (Rt_prev < Ra_prev) ^ (Rt < Ra);
-    auto isColCrossed = (Ct_prev < Ca_prev) ^ (Ct < Ca);
-    auto isSameRow = Rt == Ra;
-    auto isSameCol = Ct == Ca;
-    if (isSameMove) {
-      // same movement
-      ans += minLen;
-    } else if ((isEven && isRowCrossed && wasSameCol) || (isEven && isColCrossed && wasSameRow) ||
-               (isSameCol && wasSameRow) || (isSameRow && isSameCol)) {
-      ans++;
-    } else {
-      // No cross
-    }
     t[i].second -= minLen;
     if (t[i].second == 0) i++;
     a[j].second -= minLen;

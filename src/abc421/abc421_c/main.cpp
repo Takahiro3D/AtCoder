@@ -17,21 +17,19 @@ int main() {
   string S;
   cin >> S;
 
-  auto top = 'A';
   int64_t pos_exp = 0;
   int64_t ans_A = 0;
   REP(i, N * 2) {
-    if (S[i] == top) {
+    if (S[i] == 'A') {
       ans_A += abs(i - pos_exp);
       pos_exp += 2;
     }
   }
 
-  top = 'B';
   pos_exp = 0;
   int64_t ans_B = 0;
   REP(i, N * 2) {
-    if (S[i] == top) {
+    if (S[i] == 'B') {
       ans_B += abs(i - pos_exp);
       pos_exp += 2;
     }
