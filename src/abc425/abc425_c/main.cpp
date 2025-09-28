@@ -24,9 +24,8 @@ int main() {
   vector<int> A(N);
   REP(i, N) { cin >> A[i]; }
 
-  vector<int64_t> A_sum(N * 2 + 1);
+  vector<int64_t> A_sum(N + 1);
   REP(i, N) { A_sum[i + 1] = A_sum[i] + A[i]; }
-  REP(i, N) { A_sum[i + 1 + N] = A_sum[i + N] + A[i]; }
 
   REP(i, Q) {
     int q;
@@ -38,12 +37,12 @@ int main() {
     } else {
       int l, r;
       cin >> l >> r;
-      auto L = A_idx + l - 1;
-      auto R = A_idx + r - 1;
+      auto L = (A_idx + l - 1) % N;
+      auto R = (A_idx + r - 1) % N;
       if (L <= R) {
         cout << A_sum[R + 1] - A_sum[L] << "\n";
       } else {
-        cout << A_sum[R + N + 1] - A_sum[L] << "\n";
+        cout << A_sum[N] + A_sum[R + 1] - A_sum[L] << "\n";
       }
     }
   }

@@ -19,7 +19,8 @@ int main() {
   int ans = 0;
   REP(n, N) {
     auto i = n + 1;
-    ans += (i % 2 == 0) ? i * i * i : -i * i * i;
+    auto sign = (i % 2 == 0) ? 1 : -1;
+    ans += sign * i * i * i;
   }
 
   cout << ans << "\n";
