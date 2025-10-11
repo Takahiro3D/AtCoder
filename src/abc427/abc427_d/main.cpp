@@ -24,26 +24,33 @@ int main() {
     string S;
     cin >> S;
 
-    vector<int> G(N);
-    REP(i, N) {
+    vector<vector<int>> G(N);
+    REP(i, M) {
       int U, V;
       cin >> U >> V;
       --U;
       --V;
-      G[U] = V;
+      G[U].push_back(V);
     }
 
-    int piece = 0;
-    REP(i, K) {
-      int turn = 0;
-      for (auto node : G) {
-        if (turn == K) break;
-        node = G[node];
-        turn++;
+    // dp[i][v]: iターン目に頂点vにいるときに手番プレイヤーが勝てるか
+    vector dp(K * 2 + 1, vector<bool>(N));
+    REP(v, N) { dp[K * 2][v] = (S[v] == 'A'); }
+
+    // 逆順にDP (各K回のターンで、各頂点についてループ)
+    for (int i = K * 2 - 1; i >= 0; --i) {
+      REP(v, N) {
+        dp[i][v] = false;
+        for (auto next : G[v]) {
+          // 次のターン相手が負ける手なら勝ち
+          if (!dp[i + 1][next]) {
+            dp[i][v] = true;
+          }
+        }
       }
     }
 
-    if (S[piece] == 'A') {
+    if (dp[0][0]) {
       cout << "Alice" << endl;
     } else {
       cout << "Bob" << endl;
