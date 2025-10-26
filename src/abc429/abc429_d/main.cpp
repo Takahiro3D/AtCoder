@@ -24,41 +24,26 @@ int main() {
     A[a]++;
   }
 
-  if (A.size() == 1) {
-    int64_t dist = M;
-    int64_t ans = dist * A.begin()->second;
-    cout << ans << endl;
-    return 0;
-  }
-
   int64_t ans = 0;
   int64_t tmp = 0;
   auto start = A.begin();
+  auto prev_pos = A.rbegin()->first - M;
   auto it = start;
   while (start != A.end()) {
-    tmp += it->second;
-    while (tmp >= C) {
-      auto prev = [&]() {
-        if (start == A.begin()) {
-          // loop back
-          auto last = A.end();
-          --last;
-          return last;
-        } else {
-          return std::prev(start);
-        }
-      }();
-      auto dist = (start->first - prev->first + M) % M;
-      ans += tmp * dist;
-      // shift start iterator and remove start counts
-      tmp -= start->second;
-      ++start;
+    while (tmp < C) {
+      tmp += it->second;
+      ++it;
+      if (it == A.end()) {
+        // loop back
+        it = A.begin();
+      }
     }
-    ++it;
-    if (it == A.end()) {
-      // loop back
-      it = A.begin();
-    }
+    auto dist = (start->first - prev_pos);
+    ans += tmp * dist;
+    // shift start iterator and remove start counts
+    prev_pos = start->first;
+    tmp -= start->second;
+    ++start;
   }
 
   cout << ans << endl;
