@@ -1,0 +1,29 @@
+sample-1
+ 11 4 2
+ abbaaabaaba
+
+    aaaba     3 7
+    aaabaa    3 8
+     aabaa    4 8
+
+
+11 4 3
+ abbaaabaaba
+
+ abbaaa       0 5
+   baaaba     2 7
+   baaabaa    2 8
+    aaaba     3 7
+    aaabaa    3 8
+    aaabaab   3 9
+    aaabaaba  3 10
+     aabaa    4 8
+     aabaab   4 9
+     aabaaba  4 10
+      abaaba  5 10
+
+ a b b a a a b a a b a
+ 1 1 1 2 3 4 4 5 6 6 7
+ 0 1 2 2 2 2 3 3 3 4 4
+
+
