@@ -19,11 +19,12 @@ int main() {
   unordered_set<string> patterns;
   auto calc_pattern = [&](int row_start, int col_start) {
     string pattern;
-    REP3(i, row_start, row_start + M) {
-      REP3(j, col_start, col_start + M) { pattern += S[i][j]; }
+    REP(i, M) {
+      REP(j, M) { pattern += S[row_start + i][col_start + j]; }
     }
     return pattern;
   };
+
   REP(i, N - M + 1) {
     REP(j, N - M + 1) {
       auto p = calc_pattern(i, j);

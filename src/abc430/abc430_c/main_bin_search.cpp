@@ -17,37 +17,41 @@ int main() {
   string S;
   cin >> S;
 
-  int r_a = -1, r_b = -1;
-  int cnt_a = 0, cnt_b = 0;
+  vector<int> sum_a(N + 1), sum_b(N + 1);
+  REP(i, N) {
+    sum_a[i + 1] = sum_a[i] + (S[i] == 'a' ? 1 : 0);
+    sum_b[i + 1] = sum_b[i] + (S[i] == 'b' ? 1 : 0);
+  }
+
   int64_t ans = 0;
-
   REP(l, N) {
-    while (cnt_a < A) {
-      r_a++;
-      if (r_a >= N) {
-        cout << ans << endl;
-        return 0;
+    int ra, rb;
+    {
+      int wa = l, ac = N + 1;
+      while (wa + 1 < ac) {
+        int wj = (wa + ac) / 2;
+        if (sum_a[wj] - sum_a[l] >= A) {
+          ac = wj;
+        } else {
+          wa = wj;
+        }
       }
-
-      if (S[r_a] == 'a') {
-        cnt_a++;
-      }
+      ra = ac;
     }
 
-    while (r_b < N && cnt_b < B) {
-      r_b++;
-      if (S[r_b] == 'b') {
-        cnt_b++;
+    {
+      int ac = l, wa = N + 1;
+      while (ac + 1 < wa) {
+        int wj = (wa + ac) / 2;
+        if (sum_b[wj] - sum_b[l] < B) {
+          ac = wj;
+        } else {
+          wa = wj;
+        }
       }
+      rb = wa;
     }
-
-    ans += max(0, r_b - r_a);
-
-    if (S[l] == 'a') {
-      cnt_a--;
-    } else {
-      cnt_b--;
-    }
+    ans += max(0, rb - ra);
   }
 
   cout << ans << endl;
