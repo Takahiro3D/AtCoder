@@ -43,25 +43,23 @@ int main() {
   auto max_W = total_W / 2;
   auto size = C.size();
   // dp
+  // i: number of used parts as head
   // j: total weight
-  vector<int64_t> dp(max_W + 1);
-  dp[0] = 0;
-  // Iterate parts
+  vector<vector<int64_t>> dp(size + 1, vector<int64_t>(max_W + 1));
+  dp[0][0] = 0;
   REP(i, size) {
-    vector<int64_t> prev_dp(max_W + 1);
-    swap(prev_dp, dp);
     auto [w, diff] = C[i];
     REP(j, max_W + 1) {
       // not use parts as head
-      dp[j] = max(prev_dp[j], dp[j]);
+      dp[i + 1][j] = max(dp[i + 1][j], dp[i][j]);
+      // use parts as head
       if (j + w <= max_W) {
-        // use parts as head
-        dp[j + w] = max(prev_dp[j + w], prev_dp[j] + diff);
+        dp[i + 1][j + w] = max(dp[i + 1][j + w], dp[i][j] + diff);
       }
     }
   }
 
-  cout << dp[max_W] + total_B << endl;
+  cout << dp[size][max_W] + total_B << endl;
 
   return 0;
 }
