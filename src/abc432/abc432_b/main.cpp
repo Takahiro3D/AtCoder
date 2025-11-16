@@ -15,18 +15,16 @@ int main() {
   cin >> X;
   sort(ALL(X));
 
-  string ans;
-  int cnt = 0;
-  for (auto c : X) {
-    if (c == '0') {
-      cnt++;
-      continue;
+  if (X[0] == '0') {
+    for (auto& c : X) {
+      if (c != '0') {
+        swap(X[0], c);
+        break;
+      }
     }
-    ans += c;
   }
-  ans.insert(1, string(cnt, '0'));
 
-  cout << ans << endl;
+  cout << X << endl;
 
   return 0;
 }

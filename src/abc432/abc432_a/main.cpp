@@ -20,8 +20,7 @@ int main() {
 
   vector<int64_t> V = {A, B, C};
   sort(ALL(V));
-  auto ans = V[2] * 100 + V[1] * 10 + V[0];
 
-  cout << ans << endl;
+  cout << V[2] << V[1] << V[0] << endl;
   return 0;
 }
