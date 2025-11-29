@@ -18,17 +18,10 @@ int main() {
   int64_t X, Y, Z;
   cin >> X >> Y >> Z;
 
-  while (true) {
-    if (X < (Y * Z)) {
-      cout << "No" << endl;
-      return 0;
-    }
-    if (X == (Y * Z)) {
-      cout << "Yes" << endl;
-      return 0;
-    }
-    X++;
-    Y++;
-  }
+  // X + a = (Y + a) * Z
+  // a = (X - Y * Z) / (Z - 1)
+  auto a = div(X - Y * Z, Z - 1);
+  auto ans = (a.quot >= 0 && a.rem == 0) ? "Yes" : "No";
+  cout << ans << endl;
   return 0;
 }

@@ -20,5 +20,28 @@ int main() {
   vector<int> A(N);
   REP(i, N) { cin >> A[i]; }
 
+  vector<vector<int>> A_digit(11);  // ~10^10
+  REP(i, N) { A_digit[to_string(A[i]).size()].emplace_back(A[i] % M); }
+
+  int64_t ans = 0;
+  int64_t ten = 1;
+  REP(d, 11) {
+    // Count right values (Aj) for each digit length
+    unordered_map<int, int> cnt;
+    for (auto a : A_digit[d]) {
+      cnt[a]++;
+    }
+
+    // Calculate divisable right values
+    REP(i, N) {
+      // Ai * 10^d + Aj ≡ 0 (mod M)
+      // Aj ≡ - (Ai * 10^d) (mod M)
+      auto mod_needed = (-A[i] * ten % M + M) % M;
+      ans += cnt[mod_needed];
+    }
+    ten *= 10;
+    ten %= M;  // Prevent overflow
+  }
+  cout << ans << endl;
   return 0;
 }

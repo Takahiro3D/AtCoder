@@ -20,9 +20,10 @@ int main() {
   REP(i, N) {
     auto a = A[i];
     int ans = -1;
-    REP(j, i) {
+    for (int j = i - 1; j >= 0; --j) {
       if (v[j] > a) {
         ans = j + 1;
+        break;
       }
     }
     cout << ans << endl;
