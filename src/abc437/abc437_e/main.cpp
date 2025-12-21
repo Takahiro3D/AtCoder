@@ -17,17 +17,46 @@ int main() {
   int N;
   cin >> N;
 
-  vector<string> S(N);
-  int x, y;
-  REP(i, N) {
-    cin >> x >> y;
-    S[i] = to_string(x) + to_string(y);
-  }
-  vector<int> idx(N);
-  iota(ALL(idx), 0);
-  sort(ALL(idx), [&](const int& a, const int& b) { return S[a] < S[b]; });
+  // Accessor for vertex id by original index
+  vector<int> vertex_id(N + 1, -1);
+  // Trie tree
+  vector<map<int, int>> edges;
+  // Add root
+  vertex_id[0] = 0;
+  edges.emplace_back();
 
-  REP(i, N) { cout << idx[i] + 1 << " "; }
+  int x, y;
+  for (int i = 1; i <= N; i++) {
+    cin >> x >> y;
+    int v_to;
+    int v = vertex_id[x];
+    if (!edges[v].contains(y)) {
+      v_to = edges.size();   // Get new vertex id
+      edges.emplace_back();  // Edges for new vertex
+      edges[v][y] = v_to;
+    } else {
+      v_to = edges[v][y];  // Existing vertex id
+    }
+    vertex_id[i] = v_to;
+  }
+
+  // Reverse lookup for vertex id to original indices
+  vector<vector<int>> is(edges.size());
+  for (int i = 1; i <= N; i++) {
+    is[vertex_id[i]].emplace_back(i);
+  }
+
+  // DFS to output indices in pre-order (= dictionary order)
+  auto f = [&](auto f, int v) -> void {
+    for (int i : is[v]) {
+      cout << i << ' ';
+    }
+    for (auto [_, to_v] : edges[v]) {
+      f(f, to_v);
+    }
+  };
+  f(f, 0);
+
   cout << endl;
 
   return 0;

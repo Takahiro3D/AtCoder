@@ -9,7 +9,7 @@ using namespace std;
 struct Reindeer {
   int64_t W;
   int64_t P;
-  bool is_rided = true;
+  int64_t eff;
 };
 
 void solve() {
@@ -20,39 +20,21 @@ void solve() {
   int64_t total_P = 0;
   REP(i, N) {
     cin >> A[i].W >> A[i].P;
+    A[i].eff = A[i].P + A[i].W;
     total_W += A[i].W;
   }
 
-  vector<int> idx_P(N);
-  iota(ALL(idx_P), 0);
-  sort(ALL(idx_P), [&](const int& a, const int& b) { return A[a].P > A[b].P; });
+  sort(ALL(A), [](const Reindeer& a, const Reindeer& b) { return a.eff > b.eff; });
 
-  vector<int> idx_W(N);
-  iota(ALL(idx_W), 0);
-  sort(ALL(idx_W), [&](const int& a, const int& b) { return A[a].W > A[b].W; });
-
-  int64_t p = 0;
-  int64_t w = 0;
   int ride = N;
   REP(i, N) {
     if (total_P >= total_W) {
       break;
     }
 
-    while (!A[idx_P[p]].is_rided) p++;
-    while (!A[idx_W[w]].is_rided) w++;
-
-    if (A[idx_P[p]].P > A[idx_W[w]].W) {
-      A[idx_P[p]].is_rided = false;
-      total_P += A[idx_P[p]].P;
-      total_W -= A[idx_P[p]].W;
-      ride--;
-    } else {
-      A[idx_W[w]].is_rided = false;
-      total_P += A[idx_W[w]].P;
-      total_W -= A[idx_W[w]].W;
-      ride--;
-    }
+    total_P += A[i].P;
+    total_W -= A[i].W;
+    ride--;
   }
   cout << ride << '\n';
 }

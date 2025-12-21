@@ -1,3 +1,4 @@
 
+sum{i=0}{N} sum{j=0}{M} |Ai - Bj|
 
 

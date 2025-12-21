@@ -13,24 +13,25 @@ int main() {
 
   int H, W, N;
   cin >> H >> W >> N;
-  vector A(H, unordered_set<int>());
+  unordered_map<int, int> value_row;
   REP(i, H) {
     REP(j, W) {
       int a;
       cin >> a;
-      A[i].insert(a);
+      value_row[a] = i;
     }
   }
 
   vector<int> B(N);
   REP(i, N) { cin >> B[i]; }
 
-  int ans = 0;
-  REP(i, H) {
-    int tmp = 0;
-    REP(k, N) { tmp += A[i].count(B[k]); }
-    ans = max(ans, tmp);
+  vector<int> cnt(H);
+  REP(k, N) {
+    if (value_row.contains(B[k])) {
+      cnt[value_row[B[k]]]++;
+    }
   }
+  int ans = *max_element(ALL(cnt));
 
   cout << ans << endl;
 
