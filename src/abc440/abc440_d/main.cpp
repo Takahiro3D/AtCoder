@@ -20,21 +20,35 @@ int main() {
   vector<int> A(N);
   REP(i, N) { cin >> A[i]; }
   sort(ALL(A));
+  A.emplace_back(INT32_MAX);
 
   REP(_, Q) {
     int X, Y;
     cin >> X >> Y;
 
-    int ans = X + Y - 1;
-    int len = Y;
-    while (len > 0) {
-      auto min = lower_bound(ALL(A), X);
-      auto max = upper_bound(ALL(A), X + len - 1);
-      len = distance(min, max);
-      ans += len;
-      X = ans;
+    auto it_l = lower_bound(ALL(A), X);
+    auto idx_l = distance(A.begin(), it_l);
+
+    if (X + Y <= *it_l) {
+      cout << X + Y - 1 << endl;
+      continue;
     }
-    cout << ans << endl;
+
+    int wa = idx_l;
+    int ac = A.size();
+    while (wa + 1 < ac) {
+      int wj = (wa + ac) / 2;
+      int len = A[wj] - X;
+      int cnt = wj - idx_l;
+      if (len - cnt >= Y) {
+        ac = wj;
+      } else {
+        wa = wj;
+      }
+    }
+
+    int cnt = wa - idx_l + 1;
+    cout << X + Y - 1 + cnt << endl;
   }
 
   return 0;
