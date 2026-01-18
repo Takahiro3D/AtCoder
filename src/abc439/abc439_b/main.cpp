@@ -14,7 +14,7 @@ int main() {
   string S;
   cin >> S;
 
-  REP(_, 1000000) {
+  REP(_, 1000) {
     int64_t tmp = 0;
     for (char c : S) {
       int n = c - '0';

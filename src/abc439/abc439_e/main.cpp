@@ -17,18 +17,29 @@ int main() {
   int N;
   cin >> N;
 
-  vector<int> A(N);
-  vector<int> B(N);
-  REP(i, N) { cin >> A[i] >> B[i]; }
-
-  vector<int> cnts(N);
+  vector<pair<int, int>> ab(N);
   REP(i, N) {
-    int min_idx = lower_bound(ALL(B), A[i]) - B.begin();
-    int max_idx = lower_bound(ALL(B), B[i]) - B.begin();
-    cnts[i] = max(0, max_idx - min_idx);
+    int A, B;
+    cin >> A >> B;
+    ab[i] = {A, B};
+  }
+  // Sort by A asc, B desc (Ascending order with slope)
+  sort(ALL(ab), [](auto& a, auto& b) { return a.first != b.first ? a.first < b.first : a.second > b.second; });
+  vector<int> b(N);
+  REP(i, N) { b[i] = ab[i].second; }
+
+  // dp - i: Serched persons, value: Kite position with last selected person
+  const int INF = 1e9 + 7;
+  vector<int> dp(N + 1, INF);
+  dp[0] = -1;
+  int ans = 0;
+  for (auto bi : b) {
+    int i = lower_bound(ALL(dp), bi) - dp.begin();
+    dp[i] = bi;
+    ans = max(ans, i);
   }
 
-  cout << endl;
+  cout << ans << endl;
 
   return 0;
 }

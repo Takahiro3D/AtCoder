@@ -32,8 +32,8 @@ int main() {
 
     auto d = div(a, 5L);
     if (d.rem == 0) {
-      ans += um_l[d.quot * 7] * um_l[d.quot * 3];
-      ans += um_r[d.quot * 7] * um_r[d.quot * 3];
+      ans += um_l[d.quot * 7] * um_l[d.quot * 3];  // x5 is min case.
+      ans += um_r[d.quot * 7] * um_r[d.quot * 3];  // x5 is max case.
     }
   }
 
