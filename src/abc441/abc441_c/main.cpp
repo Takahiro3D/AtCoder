@@ -21,7 +21,7 @@ int main() {
   int64_t ans = N - K;  // All waters
   int64_t sake = 0;
   REP(i, K) {
-    sake += A[i];
+    sake += A[K - i - 1];
     ans++;
     if (sake >= X) {
       cout << ans << endl;
