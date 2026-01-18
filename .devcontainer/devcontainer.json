@@ -2,9 +2,12 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/cpp
 {
 	"name": "C++",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+	// Use the remote image.
+	"image": "ghcr.io/takahiro3d/atcoder:latest",
+	// Build docker image locally using the Dockerfile.
+	// "build": {
+	// 	"dockerfile": "Dockerfile"
+	// },
 	// It may be needed when debugging.
 	"runArgs": [
 		"--cap-add=SYS_PTRACE",
@@ -32,8 +35,7 @@
 				"ms-vscode.cpptools-extension-pack",
 				"ms-python.python",
 				"ms-python.debugpy",
-				"ms-python.vscode-pylance",
-				"visualstudioexptteam.vscodeintellicode"
+				"ms-python.vscode-pylance"
 			]
 		}
 	}
