@@ -14,38 +14,36 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
 
-  int N;
-  cin >> N;
+  int N, D;
+  cin >> N >> D;
 
   vector<int> A(N);
   REP(i, N) { cin >> A[i]; }
 
-  int MAX = 2e5 + 10;
-  vector<int> cnt(MAX);
-  REP(i, N) { cnt[A[i]]++; }
+  set<int> st;
+  st.insert(1e9 + D);
+  st.insert(-D);
 
-  vector<int> D(MAX);
-  int rem = N;
-  REP(i, MAX) {
-    rem -= cnt[i];
-    D[i] = rem;
+  int64_t ans = 0;
+  int l = 0;
+  REP(r, N) {
+    auto will_insert = A[r];
+    while (true) {
+      auto it = st.lower_bound(will_insert);
+      auto value = *it;
+      auto next = (value - will_insert) >= D;
+      auto prev_value = *prev(it);
+      auto prev = (will_insert - prev_value) >= D;
+      if (next && prev) {
+        break;
+      }
+      st.erase(A[l]);
+      l++;
+    }
+    st.insert(will_insert);
+    ans += (r - l + 1);
   }
 
-  int carry = 0;
-  REP(i, MAX) {
-    D[i] += carry;
-    auto a = div(D[i], 10);
-    carry = a.quot;
-    D[i] = a.rem;
-  }
-
-  while (D.back() == 0) {
-    D.pop_back();
-  }
-  reverse(ALL(D));
-  for (auto& d : D) {
-    cout << d;
-  }
-  cout << endl;
+  cout << ans << endl;
   return 0;
 }
