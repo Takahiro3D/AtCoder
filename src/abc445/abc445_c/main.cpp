@@ -31,31 +31,22 @@ int main() {
   cin >> N;
 
   vector<int> A(N);
-  REP(i, N) { cin >> A[i]; }
+  REP(i, N) {
+    int a;
+    cin >> a;
+    A[i] = a - 1;
+  }
 
   vector<int> ans(N, -1);
-  queue<int> q;
-
-  REP(i, N) {
-    if (ans[i] != -1) {
-      continue;
-    }
-    q.push(i);
-
-    int next = A[i];
-    while (next != A[next - 1]) {
-      next = A[next - 1];
-      q.push(next - 1);
-    }
-
-    while (!q.empty()) {
-      auto idx = q.front();
-      q.pop();
-      ans[idx] = next;
+  for (int i = N - 1; i >= 0; i--) {
+    if (A[i] == i) {
+      ans[i] = i;
+    } else {
+      ans[i] = ans[A[i]];
     }
   }
 
-  REP(i, N) { cout << ans[i] << " "; }
+  REP(i, N) { cout << ans[i] + 1 << " "; }
   cout << endl;
   return 0;
 }
