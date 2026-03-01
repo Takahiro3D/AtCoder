@@ -16,43 +16,35 @@ int main() {
   string T;
   cin >> T;
 
-  int64_t i = 0;
-  int64_t ans = 0;
-  for (auto c : T) {
-    if (c == 'A') {
-      if (i < S.size() && S[i] == 'A') {
-        // do nothing
-        i++;
+  auto f = [](string& str) {
+    vector<int> cnts{0};
+    string s;
+    for (char c : str) {
+      if (c == 'A') {
+        cnts.back()++;
       } else {
-        // insert 'A'
-        ans++;
+        cnts.push_back(0);
+        s += c;
       }
-    } else {
-      while (i < S.size() && S[i] == 'A') {
-        // remove 'A'
-        ans++;
-        i++;
-      }
-
-      if (i >= S.size() || S[i] != c) {
-        // cannot solve
-        cout << -1 << endl;
-        return 0;
-      }
-      i++;
     }
-  }
-  while (i < S.size() && S[i] == 'A') {
-    // remove 'A'
-    ans++;
-    i++;
-  }
+    return make_pair(cnts, s);
+  };
 
-  // Remain other 'A' char
-  if (i < S.size()) {
+  auto [S_cnt, s] = f(S);
+  auto [T_cnt, t] = f(T);
+
+  if (s != t) {
     // cannot solve
     cout << -1 << endl;
     return 0;
+  }
+
+  int size = max(S_cnt.size(), T_cnt.size());
+  int ans = 0;
+  REP(i, size) {
+    int s_cnt = (i < S_cnt.size()) ? S_cnt[i] : 0;
+    int t_cnt = (i < T_cnt.size()) ? T_cnt[i] : 0;
+    ans += abs(s_cnt - t_cnt);
   }
 
   cout << ans << endl;

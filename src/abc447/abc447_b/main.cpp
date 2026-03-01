@@ -14,20 +14,14 @@ int main() {
   string S;
   cin >> S;
 
-  vector<pair<char, int>> P('z' - 'a' + 1);
-  REP(i, P.size()) {
-    P[i].first = 'a' + i;
-    P[i].second = 0;
-  }
-
+  vector<int> cnt('z' - 'a' + 1);
   for (char c : S) {
-    P[c - 'a'].second++;
+    cnt[c - 'a']++;
   }
-  sort(ALL(P), [](const auto& a, const auto& b) { return a.second > b.second; });
+  auto max_cnt = *max_element(ALL(cnt));
 
-  auto max_cnt = P.front().second;
   vector<bool> is_enable('z' - 'a' + 1);
-  REP(i, P.size()) { is_enable[P[i].first - 'a'] = (P[i].second != max_cnt); }
+  REP(i, cnt.size()) { is_enable[i] = (cnt[i] != max_cnt); }
 
   for (char c : S) {
     if (is_enable[c - 'a']) {

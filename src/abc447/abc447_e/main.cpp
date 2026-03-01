@@ -18,46 +18,37 @@ int main() {
 
   int N, M;
   cin >> N >> M;
-  // max edge: 2e5
-  // max node: 2e5
-  vector<vector<int>> G(N);
-  vector<int> A(N);
+  vector<pair<int, int>> nodes(M);
   REP(i, M) {
     int U, V;
     cin >> U >> V;
     U--;
     V--;
-    // edge num of each nodes
-    G[U].push_back(i + 1);
-    G[V].push_back(i + 1);
-    // max edge num of each nodes
-    A[U] = i + 1;
-    A[V] = i + 1;
+    nodes[i] = {U, V};
   }
 
-  // single edge case
-  if (M == 1) {
-    cout << 2 << endl;
-    return 0;
-  }
+  // For fast calculation of 2^i
+  vector<mint> cost(M);
+  cost[0] = 2;
+  REP(i, M - 1) { cost[i + 1] = cost[i] * 2; }
 
-  // multiple edge case
-  auto minA = *min_element(ALL(A));
-  vector<int> minN;
-  REP(i, N) {
-    if (A[i] == minA) {
-      minN.push_back(i);
-    }
-  }
-
-  // check if multiple edge exist
   mint ans = 0;
-  for (auto n : minN) {
-    auto size = (minN.size() == 1) ? G[n].size() : G[n].size() - 1;
-    for (int i = 0; i < size; i++) {
-      ans += mint(2).pow(G[n][i]);
+  dsu uf(N);
+  int cc = N;
+  for (int i = M - 1; i >= 0; i--) {
+    auto [U, V] = nodes[i];
+    if (cc == 2 && !uf.same(U, V)) {
+      // the node shouuld be disconnected.
+      ans += cost[i];
+    } else {
+      // connect the node.
+      if (!uf.same(U, V)) {
+        uf.merge(U, V);
+        cc--;
+      }
     }
   }
+
   cout << ans.val() << endl;
   return 0;
 }

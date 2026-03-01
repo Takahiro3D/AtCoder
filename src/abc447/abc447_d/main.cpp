@@ -17,32 +17,23 @@ int main() {
   string S;
   cin >> S;
 
-  vector<vector<int>> char_idx(3);
-  REP(i, S.size()) { char_idx[S[i] - 'A'].push_back(i); }
-
-  int ans = 0;
-  int bi = 0;
-  int ci = 0;
-  REP(i, char_idx[0].size()) {
-    auto a_idx = char_idx[0][i];
-    while (bi < char_idx[1].size() && char_idx[1][bi] < a_idx) {
-      bi++;
+  int a = 0;
+  int ab = 0;
+  int abc = 0;
+  for (char c : S) {
+    if (c == 'A') {
+      a++;
     }
-    if (bi >= char_idx[1].size()) {
-      break;
+    if (c == 'B' && a) {
+      a--;
+      ab++;
     }
-    auto b_idx = char_idx[1][bi];
-    while (ci < char_idx[2].size() && char_idx[2][ci] < b_idx) {
-      ci++;
+    if (c == 'C' && ab) {
+      ab--;
+      abc++;
     }
-    if (ci >= char_idx[2].size()) {
-      break;
-    }
-    ans++;
-    bi++;
-    ci++;
   }
 
-  cout << ans << endl;
+  cout << abc << endl;
   return 0;
 }
