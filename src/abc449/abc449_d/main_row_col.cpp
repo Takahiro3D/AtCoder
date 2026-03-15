@@ -17,26 +17,10 @@ int main() {
   cin >> L >> R >> D >> U;
 
   int64_t ans = 0;
-  // count all columns with |x| > |y|
-  for (int64_t x = L; x <= R; x++) {
-    if (x % 2 == 0) {
-      auto u = min(U, abs(x) - 1L);
-      auto d = max(D, -abs(x) + 1L);
-      auto sum = u - d + 1;  // tree-plant
-      ans += max(sum, 0L);   // for y-axis
-    }
+  // count fulfilled squares for each columns
+  for (int64_t x = 0; x <= 1e6; x++) {
+    
   }
-
-  // count all rows with |y| >= |x|
-  for (int64_t y = D; y <= U; y++) {
-    if (y % 2 == 0) {
-      auto r = min(R, abs(y));
-      auto l = max(L, -abs(y));
-      auto sum = r - l + 1;  // tree-plant
-      ans += max(sum, 0L);   // for x-asis
-    }
-  }
-
   cout << ans << endl;
 
   return 0;

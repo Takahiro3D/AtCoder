@@ -17,27 +17,23 @@ int main() {
   int N, L, R;
   cin >> N >> L >> R;
 
-  vector<vector<int>> char_idxs(26);
-  REP(i, N) {
-    char c;
-    cin >> c;
-    char_idxs[c - 'a'].push_back(i);
-  }
+  string S;
+  cin >> S;
 
+  vector<int> char_cnts(26);
+  int j_min = 0;
+  int j_max = 0;
   int64_t ans = 0;
-  for (auto& idxs : char_idxs) {
-    int size = idxs.size();
-    int j_min = 0;
-    int j_max = 0;
-    for (int i = 0; i < size; i++) {
-      while (j_min < size && (idxs[j_min] - idxs[i] < L)) {
-        j_min++;
-      }
-      while (j_max < size && (idxs[j_max] - idxs[i] <= R)) {
-        j_max++;
-      }
-      ans += j_max - j_min + 1;
+  REP(i, N) {
+    while (j_max < N && j_max - i < R) {
+      j_max++;
+      char_cnts[S[j_max] - 'a']++;
     }
+    while (j_min < N && j_min - i < L - 1) {
+      j_min++;
+      char_cnts[S[j_min] - 'a']--;
+    }
+    ans += char_cnts[S[i] - 'a'];
   }
 
   cout << ans << endl;

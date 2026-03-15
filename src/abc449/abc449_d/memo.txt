@@ -1,8 +1,9 @@
-  0 1 2 3
+  0 1 2 3 x
 0 x o x o
 1 o o x o
 2 x x x o
 3 o o o o
+y
 
 3 7 11 ...
 
