@@ -19,45 +19,61 @@ int moveC[] = {1, 0, -1, 0};
 void solve() {
   int N, A, B;
   cin >> N >> A >> B;
+  A--;
+  B--;
 
   // check
-  if (N % 2 != 0) {
-    // odd matrix cannot filfill the condition
-    cout << "No\n";
-    return;
-  }
-  if (A % 2 == B % 2) {
+  auto isOddMatrix = N % 2 != 0;
+  auto isEvenSum = (A + B) % 2 == 0;
+  if (isOddMatrix || isEvenSum) {
     cout << "No\n";
     return;
   }
   cout << "Yes\n";
 
   // Simulate to move
-  vector<vector<bool>> visited(N, vector<bool>(N, false));
-  pair<int, int> pos = {0, 0};
-  visited[pos.first][pos.second] = true;
-  visited[A - 1][B - 1] = true;
-  vector<char> ans(N * N - 1);
-  REP(i, ans.size()) {
-    for (int j = 0; j < 4; j++) {
-      int nx = pos.first + moveR[j];
-      int ny = pos.second + moveC[j];
-      if (nx < 0 || nx >= N || ny < 0 || ny >= N) {
-        continue;
-      }
-      if (visited[nx][ny]) {
-        continue;
-      }
-      pos = {nx, ny};
-      visited[pos.first][pos.second] = true;
-      ans[i] = moveN[j];
-      break;
-    }
+  int h = N;
+  int w = N;
+  string s;
+  // move to the nearest row of the target
+  // start from (0, 0)
+  while (A >= 2) {
+    // move 2 rows
+    s += string(N - 1, 'R') + 'D';
+    s += string(N - 1, 'L') + 'D';
+    h -= 2;
+    A -= 2;
   }
-  for (char c : ans) {
-    cout << c;
+  while (B >= 2) {
+    // move 2 columns
+    s += "DRUR";
+    w -= 2;
+    B -= 2;
   }
-  cout << "\n";
+  // near target
+  if (A == 0) {
+    s += "DR";
+    w -= 2;
+  } else {
+    s += "RD";
+    w -= 2;
+  }
+  // remain columns
+  while (w > 1) {
+    s += "RURD";
+    w -= 2;
+  }
+  h -= 2;
+
+  // to goal (N - 1, N - 1)
+  while (h > 1) {
+    // move 2 rows
+    s += 'D' + string(N - 1, 'L');
+    s += 'D' + string(N - 1, 'R');
+    h -= 2;
+  }
+
+  cout << s << "\n";
 }
 
 int main() {

@@ -17,33 +17,15 @@ void solve() {
 
   auto remove_brackets = [&](const string& S) -> string {
     string res;
-    int cnt_x = 0;
     for (char c : S) {
-      switch (c) {
-        case '(': {
-          res += string(cnt_x, 'x');
-          cnt_x = 0;
-          res += c;
-        } break;
-        case 'x':
-          cnt_x++;
-          break;
-        case ')': {
-          if (cnt_x == 2 && !res.empty() && res.back() == '(') {
-            res.pop_back();
-          } else {
-            res += string(cnt_x, 'x');
-            cnt_x = 0;
-            res += c;
-          }
-        } break;
-
-        default:
-          break;
+      res += c;
+      if (res.ends_with("(xx)")) {
+        res.pop_back();
+        res.pop_back();
+        res.pop_back();
+        res.pop_back();
+        res += "xx";
       }
-    }
-    if (cnt_x > 0) {
-      res += string(cnt_x, 'x');
     }
     return res;
   };
