@@ -38,7 +38,6 @@ int main() {
     if (visited[i]) {
       continue;
     }
-    visited[i] = true;
     int v = i;
 
     visited[v] = true;

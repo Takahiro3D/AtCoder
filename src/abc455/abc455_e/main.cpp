@@ -20,31 +20,32 @@ int main() {
   string S;
   cin >> S;
 
-  int64_t ans = (N * (N + 1)) / 2;
+  auto f = [&](const vector<int>& c) -> int64_t {
+    // c is the value of A, B, C
+    int64_t res = 0;
+    // current sum value
+    int64_t x = 0;
+    // x value -> cnt
+    map<int64_t, int> sum;
+    REP(i, N) {
+      sum[x]++;
+      x += c[S[i] - 'A'];
+      res += sum[x];
+    }
+    return res;
+  };
 
-  int A = 0;
-  int B = 0;
-  int C = 0;
-  int L = 0;
-  for (int R = 0; R < N; R++) {
-    if (S[R] == 'a') {
-      A++;
-    } else if (S[R] == 'b') {
-      B++;
-    } else {
-      C++;
-    }
-    while (L < R && (A == B || B == C || C == A)) {
-      if (S[L] == 'a') {
-        A--;
-      } else if (S[L] == 'b') {
-        B--;
-      } else {
-        C--;
-      }
-      L++;
-    }
-  }
+  int64_t ans = (N * (N + 1)) / 2;
+  // A==B
+  ans -= f({1, -1, 0});
+  // A==C
+  ans -= f({1, 0, -1});
+  // B==C
+  ans -= f({0, 1, -1});
+  const int B = 1e6;
+  // A==B, B==C, C==A
+  ans += f({B + 1, -B, -1}) * 2;
+  cout << ans << endl;
 
   return 0;
 }

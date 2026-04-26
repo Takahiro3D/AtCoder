@@ -16,30 +16,27 @@ int main() {
   vector<int64_t> A(N);
   REP(i, N) { cin >> A[i]; }
 
-  // value -> sum
-  unordered_map<int64_t, int64_t> mp;
-  REP(i, N) { mp[A[i]] += A[i]; }
-
-  // sum -> value
-  set<pair<int64_t, int64_t>> st;
-  for (auto& [key, sum] : mp) {
-    st.emplace(sum, key);
-  }
-
-  REP(i, K) {
-    if (st.empty()) {
-      break;
-    }
-    auto it = *st.rbegin();
-    st.erase(it);
-    mp[it.second] = 0;
-  }
+  // value -> cnt
+  map<int64_t, int64_t> mp;
+  REP(i, N) { mp[A[i]]++; }
 
   int64_t ans = 0;
-  for (auto& [_, sum] : mp) {
-    ans += sum;
+  vector<int64_t> sum;
+  for (auto& [key, cnt] : mp) {
+    auto x = key * cnt;
+    sum.push_back(x);
+    ans += x;
   }
+  sort(ALL(sum));
 
+  REP(i, K) {
+    if (sum.empty()) {
+      break;
+    }
+    auto it = *sum.rbegin();
+    sum.pop_back();
+    ans -= it;
+  }
   cout << ans << endl;
 
   return 0;
