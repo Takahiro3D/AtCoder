@@ -19,27 +19,36 @@ int main() {
   cin >> Q;
 
   // Chalkbord nums
-  multiset<int> nums;
-  nums.insert(X);
-  auto it = nums.begin();
+  multiset<int> nums_L, nums_R;
+  auto center = X;
   REP(_, Q) {
     int A, B;
     cin >> A >> B;
-    nums.insert(A);
-    nums.insert(B);
-    int offset = 0;
-    offset += A > *it ? -1 : 1;
-    offset += B > *it ? -1 : 1;
-    if (offset == 0) {
-      // no change
-    } else if (offset == 2) {
-      // move to left
-      it--;
-    } else if (offset == -2) {
-      // move to right
-      it++;
+
+    auto insert = [&](int x) {
+      if (x < center) {
+        nums_L.insert(x);
+      } else {
+        nums_R.insert(x);
+      }
+    };
+    insert(A);
+    insert(B);
+
+    while (nums_L.size() > nums_R.size()) {
+      auto it = nums_L.end();
+      --it;
+      nums_R.insert(center);
+      center = *it;
+      nums_L.erase(it);
     }
-    cout << *it << endl;
+    while (nums_R.size() > nums_L.size()) {
+      auto it = nums_R.begin();
+      nums_L.insert(center);
+      center = *it;
+      nums_R.erase(it);
+    }
+    cout << center << endl;
   }
   return 0;
 }
