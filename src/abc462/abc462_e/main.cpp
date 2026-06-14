@@ -16,51 +16,34 @@ void solve() {
   X = abs(X);
   Y = abs(Y);
 
-  int64_t ans = 0;
-  // stair moving
-  auto n = min(X, Y);
-  ans += n * A + n * B;
+  // calc even moving cost
+  auto calc = [](int64_t a, int64_t b, int64_t x, int64_t y) {
+    // stair moving
+    auto p_max = max(x, y);
+    auto p_min = min(x, y);
+    auto cost_h = max(a, b);
+    auto cost_l = min(a, b);
 
-  auto remX = X - n;
-  auto remY = Y - n;
-  auto shallSnake = (A > 2 * B) || (B > 2 * A);
-  if (remX > remY) {
-    auto d = div(remX, 2U);
-    if (shallSnake) {
-      // snake move
-      ans += d.quot * (2 * A + 2 * B);
+    // stair + snake move
+    auto cost_snake = p_max * 2 * cost_l;
 
-    } else {
-      // straight move
-      ans += d.quot * (A + B);
-    }
-    if (A > B) {
-      // started X move
-      ans += d.rem * A;
-    } else {
-      // started Y move
-      ans += d.rem * B;
-    }
+    // stair + straight move
+    auto rem = p_max - p_min;
+    auto d = div(rem, 2U);
+    // start
+    auto cost_str = p_min * 2 * cost_l + d.quot * (cost_l + cost_h);
+
+    return min(cost_snake, cost_str);
+  };
+
+  if ((X + Y) % 2 == 1) {
+    auto cost_a = calc(A, B, X - 1, Y) + A;
+    auto cost_b = calc(B, A, X, Y - 1) + B;
+    auto ans = min(cost_a, cost_b);
+    cout << ans << endl;
   } else {
-    auto d = div(remY, 2U);
-    if (shallSnake) {
-      // snake move
-      ans += d.quot * (2 * A + 2 * B);
-
-    } else {
-      // straight move
-      ans += d.quot * (A + B);
-    }
-    if (A > B) {
-      // started X move
-      ans += d.rem * B;
-    } else {
-      // started Y move
-      ans += d.rem * A;
-    }
+    cout << calc(A, B, X, Y) << endl;
   }
-
-  cout << ans << endl;
 }
 
 int main() {

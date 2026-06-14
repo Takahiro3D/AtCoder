@@ -19,7 +19,7 @@ int main() {
   cin >> S;
   string ans;
   for (char c : S) {
-    if (c >= '0' && c <= '9') {
+    if (isdigit(c)) {
       ans += c;
     }
   }

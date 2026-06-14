@@ -17,14 +17,13 @@ int main() {
   REP(i, N) { cin >> P[i].second >> P[i].first; }
 
   sort(ALL(P));
-  int ans = 1;  // First one is ok
-  auto min_y = P.front().second;
-  REP(i, N - 1) {
-    auto [x2, y2] = P[i + 1];
-    if (y2 < min_y) {
+  int ans = 0;
+  auto min_y = 1000000;
+  for (auto& [x, y] : P) {
+    if (y < min_y) {
       ans++;
     }
-    min_y = min(min_y, y2);
+    min_y = min(min_y, y);
   }
   cout << ans << endl;
 
